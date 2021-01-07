@@ -1,0 +1,99 @@
+package me.panda.nucleus.listeners;
+
+
+import me.panda.nucleus.Nucleus;
+import me.panda.nucleus.commands.StaffChatCommand;
+import me.panda.nucleus.util.CC;
+import net.luckperms.api.LuckPermsProvider;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.event.*;
+import net.md_5.bungee.api.plugin.Listener;
+import net.md_5.bungee.event.EventHandler;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+
+public class PlayerListener implements Listener {
+
+    private final Nucleus plugin = Nucleus.getInstance();
+    private final Map<ProxiedPlayer, String> leftServer = new HashMap<>();
+
+    @EventHandler
+    public void onChat(ChatEvent event) {
+        if (!(event.getSender() instanceof ProxiedPlayer)) return;
+
+        if (event.getMessage().startsWith("/")) return;
+
+        ProxiedPlayer player = (ProxiedPlayer) event.getSender();
+        if (StaffChatCommand.toggle.contains(player.getUniqueId())) {
+            String prefix = Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId())).getCachedData().getMetaData().getPrefix() != null ? Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId())).getCachedData().getMetaData().getPrefix() : "&r";
+            String playerString = prefix + player.getName();
+            this.plugin.getProxy().getPlayers().forEach(players -> {
+                if (players.hasPermission("veax.nucleus.staffchat"))
+                    players.sendMessage(CC.translate("&9[" + player.getServer().getInfo().getName() + "] " + playerString + "&7: &f" + event.getMessage()));
+            });
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onPlayerDisconnect(PlayerDisconnectEvent event) {
+        leftServer.remove(event.getPlayer());
+    }
+
+    @EventHandler
+    public void onServerDisconnect(ServerDisconnectEvent event) {
+        leftServer.put(event.getPlayer(), event.getTarget().getName());
+    }
+
+    @EventHandler
+    public void onSwitch(ServerSwitchEvent event) {
+        ProxiedPlayer player = event.getPlayer();
+        if (player.hasPermission("veax.nucleus.serverswitch")) {
+            String prefix = Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId())).getCachedData().getMetaData().getPrefix() != null ? Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId())).getCachedData().getMetaData().getPrefix() : "&r";
+            String playerString = prefix + player.getName();
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    plugin.getProxy().getPlayers().forEach(players -> {
+                        if (players.hasPermission("veax.nucleus.serverswitch")) {
+                            if (leftServer.get(player) != null)
+                                players.sendMessage(CC.translate("&9[Staff] " + playerString + " &fhas joined &f" + player.getServer().getInfo().getName()));
+                            else
+                                players.sendMessage(CC.translate("&9[Staff] " + playerString + " &7has connected to &f" + player.getServer().getInfo().getName()));
+                        }
+                    });
+                }
+            };
+            this.plugin.getProxy().getScheduler().schedule(this.plugin, runnable, 1L, TimeUnit.MILLISECONDS);
+        }
+    }
+
+    /*@EventHandler
+    public void onJoin(ServerConnectEvent event) {
+        ProxiedPlayer player = event.getPlayer();
+        if (player.hasPermission("veax.nucleus.serverconnect")) {
+            String prefix = LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix() != null ? LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix() : "&r";
+            String playerString = prefix + player.getName();
+            this.plugin.getProxy().getPlayers().forEach(players -> {
+                if (players.hasPermission("veax.nucleus.serverconnect"))
+                    players.sendMessage(CC.translate("&9[Staff] " + playerString + " &bhas joined the Network!"));
+            });
+        }
+    }*/
+
+    @EventHandler
+    public void onDisconnect(PlayerDisconnectEvent event) {
+        ProxiedPlayer player = event.getPlayer();
+        if (player.hasPermission("veax.nucleus.serverdisconnect")) {
+            String prefix = Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId())).getCachedData().getMetaData().getPrefix() != null ? LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix() : "&r";
+            String playerString = prefix + player.getName();
+            this.plugin.getProxy().getPlayers().forEach(players -> {
+                if (players.hasPermission("veax.nucleus.serverdisconnect"))
+                    players.sendMessage(CC.translate("&9[Staff] " + playerString + " &bhas disconnected from the Network!"));
+            });
+        }
+    }
+}

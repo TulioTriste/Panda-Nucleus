@@ -1,0 +1,4 @@
+name: Nucleus
+version: ${project.version}
+main: me.panda.nucleus.Nucleus
+description: BungeeCord Plugin
