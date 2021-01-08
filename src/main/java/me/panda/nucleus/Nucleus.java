@@ -28,11 +28,11 @@ public class Nucleus extends Plugin {
     public void onEnable() {
         this.getProxy().getConsole().sendMessage("FUnciono hijo de puta ");
         instance = this;
+        this.onConfig();
+        this.reloadConfig();
         registerCommands();
         registerManagers();
         registerListeners();
-        this.onConfig();
-        this.reloadConfig();
     }
 
     @Override
@@ -53,6 +53,7 @@ public class Nucleus extends Plugin {
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new WhoisCommand());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new MotdCommand());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new ReloadCommand());
+        ProxyServer.getInstance().getPluginManager().registerCommand(this, new ServerStatusCommand());
 
         Nucleus.getInstance().getConfig().getSection("SERVER").getKeys().forEach(commands ->
                 ProxyServer.getInstance().getPluginManager().registerCommand(this, new ServerSendCommand(commands)));
@@ -105,5 +106,4 @@ public class Nucleus extends Plugin {
 
     public Configuration getConfig() { return config; }
 
-    public Configuration getConfiguration() { return config; }
 }

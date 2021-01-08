@@ -11,14 +11,22 @@ WHOIS-MESSAGE:
   - '&3Ping: &f%ping%'
   - '&3Perms: &f%perms%'
   - '&f&m-----------------------------'
+  #Remove if you want or add line if you want
 
 MOTD-EDIT: "%D_ARROW%&4Panda Development Mode %NEWLINE% Bungee Mode Active"
 
 SERVER:
   build:
     PERMS: "nucleus.build"
-  kitmap:
-    PERMS: "nucleus.kitmap"
+  hcf:
+    PERMS: "nucleus.hcf"
+  practice:
+    PERMS: "nucles.practice"
+
+SERVER-STATUS:
+  - '%server% testeandopiola'
+  - '%server_info% testeandopiola'
+  - '%player_online% testeandopiola'
 
 
 
