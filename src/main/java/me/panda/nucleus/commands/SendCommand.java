@@ -11,7 +11,7 @@ import net.md_5.bungee.command.ConsoleCommandSender;
 public class SendCommand extends Command {
 
     public SendCommand() {
-        super("send", "veax.nucleus.send");
+        super("send", "nucleus.send");
     }
 
     @Override

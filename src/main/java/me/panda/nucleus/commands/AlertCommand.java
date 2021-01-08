@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 public class AlertCommand extends Command {
 
     public AlertCommand(){
-        super("alert", "veax.nucleus.alert", "announcement");
+        super("alert", "nucleus.alert", "announcement");
     }
 
     @Override
@@ -37,6 +37,6 @@ public class AlertCommand extends Command {
         for (String string : strings) {
             message.append(string).append(" ");
         }
-        ProxyServer.getInstance().broadcast(CC.translate(Nucleus.getInstance().getConfig().getString("alert-prefix") + " &f" + message.toString()));
+        ProxyServer.getInstance().broadcast(CC.translate(Nucleus.getInstance().getConfig().getString("ALERT-PREFIX") + " &f" + message.toString()));
     }
 }

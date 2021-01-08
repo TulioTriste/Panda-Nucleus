@@ -49,7 +49,7 @@ public class ReportCommand extends Command {
         long timeLeft = System.currentTimeMillis() - this.plugin.getCooldownManager().getCooldown("report", player.getUniqueId());
         if (TimeUnit.MILLISECONDS.toSeconds(timeLeft) >= 60L) {
             for (ProxiedPlayer online : this.plugin.getProxy().getPlayers()) {
-                if (online.hasPermission("veax.nucleus.report.notify")) {
+                if (online.hasPermission("nucleus.report.notify")) {
                     online.sendMessage(CC.translate("&9[Report] &7[" + player.getServer().getInfo().getName() + "] " + playerString + " &bhas reported &a" + targetString));
                     online.sendMessage(CC.translate("      &9Reason: &b" + reason.toString()));
                 }

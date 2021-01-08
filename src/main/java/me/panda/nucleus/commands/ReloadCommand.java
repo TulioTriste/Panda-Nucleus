@@ -13,15 +13,15 @@ import net.md_5.bungee.api.plugin.Command;
  */
 public class ReloadCommand extends Command {
     public ReloadCommand() {
-        super("reload", "bungee.staff");
+        super("reload", "nucleus.reload");
     }
 
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
-        if (commandSender.hasPermission("bungee.staff"))
+        if (commandSender.hasPermission(getPermission()))
             commandSender.sendMessage(CC.translate("&cYou dont have permissions!"));
 
-        commandSender.sendMessage(CC.translate("&4Config Reload "));
+        commandSender.sendMessage(CC.translate("&4Config Reload"));
         Nucleus.getInstance().reloadConfig();
     }
 }

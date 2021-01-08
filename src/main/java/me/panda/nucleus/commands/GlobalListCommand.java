@@ -10,7 +10,7 @@ import net.md_5.bungee.command.ConsoleCommandSender;
 public class GlobalListCommand extends Command {
 
     public GlobalListCommand() {
-        super("globallist", "veax.nucleus.globallist", "glist");
+        super("globallist", "nucleus.globallist", "glist");
     }
 
     @Override

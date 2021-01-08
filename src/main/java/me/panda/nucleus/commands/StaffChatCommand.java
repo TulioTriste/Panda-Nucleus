@@ -18,7 +18,7 @@ public class StaffChatCommand extends Command {
     public static final Set<UUID> toggle = Sets.newHashSet();
 
     public StaffChatCommand() {
-        super("staffchat", "veax.nucleus.staffchat", "sc", "staffc");
+        super("staffchat", "nucleus.staffchat", "sc", "staffc");
     }
 
     @Override

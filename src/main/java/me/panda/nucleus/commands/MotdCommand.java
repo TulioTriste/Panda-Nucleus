@@ -1,5 +1,6 @@
 package me.panda.nucleus.commands;
 
+import jdk.internal.vm.compiler.collections.EconomicMap;
 import me.panda.nucleus.Nucleus;
 import me.panda.nucleus.util.CC;
 import net.md_5.bungee.api.CommandSender;
@@ -23,9 +24,12 @@ public class MotdCommand extends Command {
         super("bmotd", "nucleus.motd", "setmotd");
     }
 
-    public void execute(CommandSender sender, final String[] args) {
+    public void execute(CommandSender commandSender, final String[] args) {
+        if (commandSender.hasPermission(getPermission())){
+            commandSender.sendMessage(CC.translate("&cYou dont have permission"));
+        }
         if (args.length == 0) {
-            sender.sendMessage(CC.translate("&cUsage: /bmotd <text> - %NEWLINE% new line"));
+            commandSender.sendMessage(CC.translate("&cUsage: /bmotd <text> - %NEWLINE% new line"));
         }
         else {
             final StringBuilder message = new StringBuilder();
@@ -34,7 +38,7 @@ public class MotdCommand extends Command {
             }
           Nucleus.getInstance().getConfig().set("MOTD-EDIT", (Object)message.toString());
             Nucleus.getInstance().saveConfig();
-            sender.sendMessage(CC.translate("&eYou have updated motd to: " + CC.translate(message.toString())));
+            commandSender.sendMessage(CC.translate("&eYou have updated motd to: " + CC.translate(message.toString())));
         }
     }
 }

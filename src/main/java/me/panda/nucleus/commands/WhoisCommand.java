@@ -50,8 +50,8 @@ public class WhoisCommand extends Command {
         .map(a -> a.replace("%ping%", String.valueOf(targetP.getPing())))
         .map(a -> a.replace("%uuid", String.valueOf(targetP.getUniqueId())))
         .map(a -> a.replace("%ip%", String.valueOf(targetP.getAddress())))
+        .map(a -> a.replace("%customname%", String.valueOf(targetP.getDisplayName())))
         .map(a -> a.replace("%perms%", String.valueOf(targetP.getPermissions())))
-        .map(a -> a.replace("%rank%", String.valueOf(targetP.getPermissions())))
         .collect(Collectors.toList())){
             commandSender.sendMessage(CC.translate(whoismessage));
         }

@@ -38,7 +38,7 @@ public class RequestCommand extends Command {
         String playerString = prefix + player.getName();
         if (TimeUnit.MILLISECONDS.toSeconds(timeLeft) >= 60L) {
             for (ProxiedPlayer online : this.plugin.getProxy().getPlayers()) {
-                if (online.hasPermission("veax.nucleus.request.notify")) {
+                if (online.hasPermission("nucleus.request.notify")) {
                     online.sendMessage(CC.translate("&9[Request] &7[" + player.getServer().getInfo().getName() + "] &b" + playerString + " &bhas requested assistance"));
                     online.sendMessage(CC.translate("      &9Reason: &b" + reason.toString()));
                 }

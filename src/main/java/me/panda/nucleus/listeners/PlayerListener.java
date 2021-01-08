@@ -31,7 +31,7 @@ public class PlayerListener implements Listener {
             String prefix = Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId())).getCachedData().getMetaData().getPrefix() != null ? Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId())).getCachedData().getMetaData().getPrefix() : "&r";
             String playerString = prefix + player.getName();
             this.plugin.getProxy().getPlayers().forEach(players -> {
-                if (players.hasPermission("veax.nucleus.staffchat"))
+                if (players.hasPermission("nucleus.staffchat"))
                     players.sendMessage(CC.translate("&9[" + player.getServer().getInfo().getName() + "] " + playerString + "&7: &f" + event.getMessage()));
             });
             event.setCancelled(true);
@@ -51,14 +51,14 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onSwitch(ServerSwitchEvent event) {
         ProxiedPlayer player = event.getPlayer();
-        if (player.hasPermission("veax.nucleus.serverswitch")) {
+        if (player.hasPermission("nucleus.serverswitch")) {
             String prefix = Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId())).getCachedData().getMetaData().getPrefix() != null ? Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId())).getCachedData().getMetaData().getPrefix() : "&r";
             String playerString = prefix + player.getName();
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
                     plugin.getProxy().getPlayers().forEach(players -> {
-                        if (players.hasPermission("veax.nucleus.serverswitch")) {
+                        if (players.hasPermission("nucleus.serverswitch")) {
                             if (leftServer.get(player) != null)
                                 players.sendMessage(CC.translate("&9[Staff] " + playerString + " &fhas joined &f" + player.getServer().getInfo().getName()));
                             else
@@ -70,28 +70,14 @@ public class PlayerListener implements Listener {
             this.plugin.getProxy().getScheduler().schedule(this.plugin, runnable, 1L, TimeUnit.MILLISECONDS);
         }
     }
-
-    /*@EventHandler
-    public void onJoin(ServerConnectEvent event) {
-        ProxiedPlayer player = event.getPlayer();
-        if (player.hasPermission("veax.nucleus.serverconnect")) {
-            String prefix = LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix() != null ? LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix() : "&r";
-            String playerString = prefix + player.getName();
-            this.plugin.getProxy().getPlayers().forEach(players -> {
-                if (players.hasPermission("veax.nucleus.serverconnect"))
-                    players.sendMessage(CC.translate("&9[Staff] " + playerString + " &bhas joined the Network!"));
-            });
-        }
-    }*/
-
     @EventHandler
     public void onDisconnect(PlayerDisconnectEvent event) {
         ProxiedPlayer player = event.getPlayer();
-        if (player.hasPermission("veax.nucleus.serverdisconnect")) {
+        if (player.hasPermission("nucleus.serverdisconnect")) {
             String prefix = Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId())).getCachedData().getMetaData().getPrefix() != null ? LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix() : "&r";
             String playerString = prefix + player.getName();
             this.plugin.getProxy().getPlayers().forEach(players -> {
-                if (players.hasPermission("veax.nucleus.serverdisconnect"))
+                if (players.hasPermission("nucleus.serverdisconnect"))
                     players.sendMessage(CC.translate("&9[Staff] " + playerString + " &bhas disconnected from the Network!"));
             });
         }
