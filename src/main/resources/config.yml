@@ -1,6 +1,6 @@
 alert-prefix: "&9&lPandaAnnouncement"
 WHOIS-MESSAGE:
   - '&4Whois'
-  - 'Name: %player%'
+  - 'Name: %name%'
 
 MOTD-EDIT: "&4Panda Development Mode %NEWLINE% GVNG TEAM PENE"

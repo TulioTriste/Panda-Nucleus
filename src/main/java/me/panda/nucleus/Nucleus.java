@@ -5,31 +5,38 @@ import lombok.Getter;
 import me.panda.nucleus.commands.*;
 import me.panda.nucleus.listeners.MotdListener;
 import me.panda.nucleus.listeners.PlayerListener;
+import me.panda.nucleus.util.ConfigManager;
 import me.panda.nucleus.util.CooldownManager;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
+import net.md_5.bungee.config.Configuration;
+import net.md_5.bungee.config.ConfigurationProvider;
+import net.md_5.bungee.config.YamlConfiguration;
+
+import java.io.File;
+import java.io.IOException;
 
 @Getter
 public class Nucleus extends Plugin {
 
     private static Nucleus instance;
+    public static Configuration config;
     private CooldownManager cooldownManager;
+
 
     @Override
     public void onEnable() {
-        super.onEnable();
+        this.getProxy().getConsole().sendMessage("FUnciono hijo de puta ");
         instance = this;
-        if (!getDataFolder().exists()) {
-            getDataFolder().mkdir();
-        }
         registerCommands();
         registerManagers();
         registerListeners();
+        this.onConfig();
+        this.reloadConfig();
     }
 
     @Override
     public void onDisable() {
-        super.onDisable();
         cooldownManager.clearCooldowns();
     }
 
@@ -57,6 +64,34 @@ public class Nucleus extends Plugin {
         ProxyServer.getInstance().getPluginManager().registerListener(this, new MotdListener());
     }
 
+    public void onConfig() {
+        try {
+            config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(ConfigManager.startConfig(this, "config.yml"));
+        }
+        catch (IOException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void saveConfig() {
+        try {
+            ConfigurationProvider.getProvider(YamlConfiguration.class).save(Nucleus.getInstance().getConfig(), new File(this.getDataFolder(), "config.yml"));
+        }
+        catch (IOException e) {
+            throw new RuntimeException("Unable to save configuration", e);
+        }
+    }
+
+    public void reloadConfig() {
+        try {
+            config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(this.getDataFolder(), "config.yml"));
+        }
+        catch (IOException e) {
+            throw new RuntimeException("Unable to load configuration", e);
+        }
+    }
+
+
     private void registerManagers() {
         this.cooldownManager = new CooldownManager();
     }
@@ -68,4 +103,8 @@ public class Nucleus extends Plugin {
     public CooldownManager getCooldownManager() {
         return cooldownManager;
     }
+
+    public Configuration getConfig() { return config; }
+
+    public Configuration getConfiguration() { return config; }
 }

@@ -75,8 +75,9 @@
             <version>1.18.12</version>
         </dependency>
         <dependency>
-            <groupId>me.luckperms</groupId>
+            <groupId>luckperms.com</groupId>
             <artifactId>luckperms</artifactId>
+            <version>1.0</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/libs/api-5.2.jar</systemPath>
         </dependency>

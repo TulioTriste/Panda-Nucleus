@@ -18,7 +18,6 @@ import java.io.File;
  */
 public class MotdCommand extends Command {
 
-    private Configuration config = null;
 
     public MotdCommand() {
         super("bmotd", "nucleus.motd", "setmotd");
@@ -29,17 +28,12 @@ public class MotdCommand extends Command {
             sender.sendMessage(CC.translate("&cUsage: /bmotd <text> - %NEWLINE% new line"));
         }
         else {
-            try {
-                config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(Nucleus.getInstance().getDataFolder(), "config.yml"));
-            } catch (Exception ex) {
-                Nucleus.getInstance().getLogger().fine("motd.edit in config.yml doesn't exist!");
-                return;
-            }
             final StringBuilder message = new StringBuilder();
             for (int i = 0; i < args.length; ++i) {
                 message.append(args[i]).append(" ");
             }
-          config.set("MOTD.EDIT", (Object)message.toString());
+          Nucleus.getInstance().getConfig().set("MOTD-EDIT", (Object)message.toString());
+            Nucleus.getInstance().saveConfig();
             sender.sendMessage(CC.translate("&eYou have updated motd to: " + CC.translate(message.toString())));
         }
     }

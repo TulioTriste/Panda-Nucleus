@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 public class AlertCommand extends Command {
 
-    public AlertCommand() throws IOException {
+    public AlertCommand(){
         super("alert", "veax.nucleus.alert", "announcement");
     }
 
@@ -33,18 +33,10 @@ public class AlertCommand extends Command {
             commandSender.sendMessage(CC.translate("&cUsage: /alert <message>"));
             return;
         }
-
-        Configuration config = null;
-        try {
-            config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(Nucleus.getInstance().getDataFolder(), "config.yml"));
-        } catch (Exception ex) {
-            Nucleus.getInstance().getLogger().fine("alert-prefix in config.yml doesn't exist!");
-            return;
-        }
         StringBuilder message = new StringBuilder(Strings.EMPTY);
         for (String string : strings) {
             message.append(string).append(" ");
         }
-        ProxyServer.getInstance().broadcast(CC.translate(config.getString("alert-prefix") + " &f" + message.toString()));
+        ProxyServer.getInstance().broadcast(CC.translate(Nucleus.getInstance().getConfig().getString("alert-prefix") + " &f" + message.toString()));
     }
 }

@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
  */
 public class WhoisCommand extends Command {
 
-    Configuration config = null;
 
     public WhoisCommand(){
         super("whois", "nucleus.whois", "debugg");
@@ -44,7 +43,7 @@ public class WhoisCommand extends Command {
             return;
         }
 
-        for (String whoismessage : config.getStringList("WHOIS-MESSAGE")
+        for (String whoismessage : Nucleus.getInstance().getConfig().getStringList("WHOIS-MESSAGE")
         .stream()
         .map(a -> a.replace("%server%", String.valueOf(targetP.getServer())))
         .map(a -> a.replace("%name%" , String.valueOf(targetP.getName())))
