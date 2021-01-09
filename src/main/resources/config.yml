@@ -24,10 +24,13 @@ SERVER:
   practice:
     PERMS: "nucles.practice"
 
-SERVER-STATUS:
-  - '%server% testeandopiola'
-  - '%server_info% testeandopiola'
-  - '%player_online% testeandopiola'
+BLOCK-COMMAND:
+  COMMAND:
+    - 'bukkit:op'
+    - 'op'
+  STATUS: true
+
+
 
 
 

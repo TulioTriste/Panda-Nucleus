@@ -6,5 +6,6 @@ Add Server Status Test Code
 
 New perms
 
-Add Server send test code
+Add blockcommand event 
 
+Add boolean in motd and block command
