@@ -12,8 +12,9 @@ WHOIS-MESSAGE:
   - '&3Perms: &f%perms%'
   - '&f&m-----------------------------'
   #Remove if you want or add line if you want
-
-MOTD-EDIT: "%D_ARROW%&4Panda Development Mode %NEWLINE% Bungee Mode Active"
+MOTD:
+  STATUS: true
+  MOTD-EDIT: "%D_ARROW%&4Panda Development Mode %NEWLINE% Bungee Mode Active"
 
 SERVER:
   build:

@@ -30,8 +30,8 @@ public class Nucleus extends Plugin {
         instance = this;
         this.onConfig();
         this.reloadConfig();
-        registerCommands();
         registerManagers();
+        registerCommands();
         registerListeners();
     }
 
@@ -41,9 +41,7 @@ public class Nucleus extends Plugin {
     }
 
     private void registerCommands() {
-        try {
-            ProxyServer.getInstance().getPluginManager().registerCommand(this, new AlertCommand());
-        } catch (Exception ignored) {}
+        ProxyServer.getInstance().getPluginManager().registerCommand(this, new AlertCommand());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new GlobalListCommand());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new SendCommand());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new ListCommand());
@@ -51,9 +49,11 @@ public class Nucleus extends Plugin {
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new StaffChatCommand());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new ReportCommand());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new WhoisCommand());
-        ProxyServer.getInstance().getPluginManager().registerCommand(this, new MotdCommand());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new ReloadCommand());
-        ProxyServer.getInstance().getPluginManager().registerCommand(this, new ServerStatusCommand());
+
+        Nucleus.getInstance().getConfig().getBoolean("MOTD.STATUS");{
+            ProxyServer.getInstance().getPluginManager().registerCommand(this, new MotdCommand());
+        }
 
         Nucleus.getInstance().getConfig().getSection("SERVER").getKeys().forEach(commands ->
                 ProxyServer.getInstance().getPluginManager().registerCommand(this, new ServerSendCommand(commands)));
@@ -61,7 +61,9 @@ public class Nucleus extends Plugin {
 
     private void registerListeners() {
         ProxyServer.getInstance().getPluginManager().registerListener(this, new PlayerListener());
-        ProxyServer.getInstance().getPluginManager().registerListener(this, new MotdListener());
+        Nucleus.getInstance().getConfig().getBoolean("MOTD.STATUS");{
+            ProxyServer.getInstance().getPluginManager().registerListener(this, new MotdListener());
+        }
     }
 
     public void onConfig() {
