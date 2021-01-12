@@ -20,8 +20,8 @@ public class BlockCommandListener implements Listener {
         if (player.hasPermission("nucleus.bypass")){
             return;
         }
-        if (player.hasPermission("nucleus.bypass")){
-            if (event.isCommand() && event.equals(Nucleus.getInstance().getConfig().getStringList("BLOCK-COMMAND"))){
+        if (!player.hasPermission("nucleus.bypass")){
+            if (!(!event.isCommand() || !event.equals(Nucleus.getInstance().getConfig().getStringList("BLOCK-COMMAND")))){
                 event.isCancelled();
                 player.sendMessage(CC.translate("&cThis command has been block be console!"));
             }

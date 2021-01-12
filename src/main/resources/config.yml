@@ -28,9 +28,10 @@ BLOCK-COMMAND:
   COMMAND:
     - 'bukkit:op'
     - 'op'
-  STATUS: true
 
-
+MAINTENACE:
+  ENABLE: false
+  KICK_MESSAGE: "&cServer in Maintenance Mode %NEWLINE% Need Support? Join discord.gg/pandacomunnity"
 
 
 

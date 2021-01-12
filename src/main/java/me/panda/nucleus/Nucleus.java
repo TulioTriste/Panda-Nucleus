@@ -4,6 +4,7 @@ package me.panda.nucleus;
 import lombok.Getter;
 import me.panda.nucleus.commands.*;
 import me.panda.nucleus.listeners.BlockCommandListener;
+import me.panda.nucleus.listeners.MaintenanceListener;
 import me.panda.nucleus.listeners.MotdListener;
 import me.panda.nucleus.listeners.PlayerListener;
 import me.panda.nucleus.util.ConfigManager;
@@ -51,23 +52,18 @@ public class Nucleus extends Plugin {
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new ReportCommand());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new WhoisCommand());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new ReloadCommand());
-
-        Nucleus.getInstance().getConfig().getBoolean("MOTD.STATUS");{
-            ProxyServer.getInstance().getPluginManager().registerCommand(this, new MotdCommand());
-        }
-
+        ProxyServer.getInstance().getPluginManager().registerCommand(this, new ServerInfoCommand());
+        ProxyServer.getInstance().getPluginManager().registerCommand(this, new MotdCommand());
+        ProxyServer.getInstance().getPluginManager().registerCommand(this, new MaintenanceCommand());
         Nucleus.getInstance().getConfig().getSection("SERVER").getKeys().forEach(commands ->
                 ProxyServer.getInstance().getPluginManager().registerCommand(this, new ServerSendCommand(commands)));
     }
 
     private void registerListeners() {
         ProxyServer.getInstance().getPluginManager().registerListener(this, new PlayerListener());
-        Nucleus.getInstance().getConfig().getBoolean("MOTD.STATUS");{
             ProxyServer.getInstance().getPluginManager().registerListener(this, new MotdListener());
-        }
-        Nucleus.getInstance().getConfig().getBoolean("BLOCK-COMMAND.STATUS");{
             ProxyServer.getInstance().getPluginManager().registerListener(this, new BlockCommandListener());
-        }
+            ProxyServer.getInstance().getPluginManager().registerListener(this, new MaintenanceListener());
     }
 
     public void onConfig() {

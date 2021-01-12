@@ -17,14 +17,16 @@ import net.md_5.bungee.event.EventHandler;
 public class MotdListener implements Listener{
     @EventHandler(priority = 64)
     public void onServerListPing(final ProxyPingEvent event){
-        if (Nucleus.getInstance().getConfig().getString("MOTD-EDIT") == null){
-            return;
+        if (Nucleus.getInstance().getConfig().getBoolean("MOTD.STATUS")){
+            if (Nucleus.getInstance().getConfig().getString("MOTD-EDIT") == null){
+                return;
+            }
+            final ServerPing ping = event.getResponse();
+            String motd = CC.translate(Nucleus.getInstance().getConfig().getString("MOTD-EDIT").replace("︱", "\u2503").replace("%ARROW_1", "\u27a5"));
+            motd = motd.replace("%NEWLINE%", "\n");
+            motd = motd.replace("%D_ARROW%", "\u00BB");
+            ping.setDescription(motd);
+            event.setResponse(ping);
         }
-        final ServerPing ping = event.getResponse();
-        String motd = CC.translate(Nucleus.getInstance().getConfig().getString("MOTD-EDIT").replace("︱", "\u2503").replace("%ARROW_1", "\u27a5"));
-        motd = motd.replace("%NEWLINE%", "\n");
-        motd = motd.replace("%D_ARROW%", "\u00BB");
-        ping.setDescription(motd);
-        event.setResponse(ping);
     }
 }

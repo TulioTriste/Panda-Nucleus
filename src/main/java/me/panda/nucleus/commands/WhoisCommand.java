@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
  */
 public class WhoisCommand extends Command {
 
-
     public WhoisCommand(){
         super("whois", "nucleus.whois", "debugg");
     }
