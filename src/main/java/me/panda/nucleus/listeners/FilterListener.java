@@ -13,7 +13,7 @@ import net.md_5.bungee.event.EventHandler;
  * Date: 09/01/2021 @ 12:38
  * Class: BlockCommandListener
  */
-public class BlockCommandListener implements Listener {
+public class FilterListener implements Listener {
     @EventHandler
     public void executeCommand(ChatEvent event){
         ProxiedPlayer player = (ProxiedPlayer) event.getSender();

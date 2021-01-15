@@ -20,14 +20,14 @@ public class MaintenanceCommand extends Command {
 
 
     @Override
-    public void execute(CommandSender sender, String[] args) {
-        if (!(sender instanceof ProxiedPlayer)) {
+    public void execute(CommandSender commandSender, String[] args) {
+        if (!(commandSender instanceof ProxiedPlayer)) {
             if(args.length == 0) {
-                sender.sendMessage(CC.translate("&cIncorrect usage, Use: /maintenance <true:false>"));
+                commandSender.sendMessage(CC.translate("&cIncorrect usage, Use: /maintenance <true:false>"));
                 return;
             }
             if(args.length > 1) {
-                sender.sendMessage(CC.translate("&cIncorrect usage, Use: /maintenance <true:false>"));
+                commandSender.sendMessage(CC.translate("&cIncorrect usage, Use: /maintenance <true:false>"));
                 return;
             }
             switch (args[0]) {
@@ -35,40 +35,44 @@ public class MaintenanceCommand extends Command {
                     Nucleus.getInstance().getConfig().set("MAINTENANCE.ENABLED", true);
                     Nucleus.getInstance().saveConfig();
                     (Nucleus.getInstance()).reloadConfig();
-                    sender.sendMessage(CC.translate("&4&LMaintenance: &aEnabled"));
+                    commandSender.sendMessage(CC.translate("&4&LMaintenance: &aEnabled"));
                     break;
                 case "false":
                     Nucleus.getInstance().getConfig().set("MAINTENANCE.ENABLED", false);
                     Nucleus.getInstance().saveConfig();
                     Nucleus.getInstance().reloadConfig();
-                    sender.sendMessage(CC.translate("&4&LMaintenance: &cDisabled"));
+                    commandSender.sendMessage(CC.translate("&4&LMaintenance: &cDisabled"));
                     break;
             }
             return;
         }
 
-        ProxiedPlayer player = (ProxiedPlayer)sender;
+        ProxiedPlayer player = (ProxiedPlayer)commandSender;
         if(player.hasPermission(getPermission())) {
             if(args.length == 0) {
-                sender.sendMessage(CC.translate("&cIncorrect usage, Use: /maintenance <true:false>"));
+                commandSender.sendMessage(CC.translate("&cIncorrect usage, Use: /maintenance <true:false>"));
                 return;
             }
             if(args.length > 1) {
-                sender.sendMessage(CC.translate("&cIncorrect usage, Use: /maintenance <true:false>"));
+                commandSender.sendMessage(CC.translate("&cIncorrect usage, Use: /maintenance <true:false>"));
                 return;
             }
             switch (args[0]) {
                 case "true":
                     Nucleus.getInstance().getConfig().set("MAINTENANCE.ENABLED", true);
+                    Nucleus.getInstance().getConfig().set("MAINTENANCE-MOTD.STATUS", true);
+                    Nucleus.getInstance().getConfig().set("MOTD.STATUS", false);
                     Nucleus.getInstance().saveConfig();
                     Nucleus.getInstance().reloadConfig();
-                    sender.sendMessage(CC.translate("&4&LMaintenance: &aEnabled"));
+                    commandSender.sendMessage(CC.translate("&4&LMaintenance: &aEnabled"));
                     break;
                 case "false":
                     Nucleus.getInstance().getConfig().set("MAINTENANCE.ENABLED", false);
+                    Nucleus.getInstance().getConfig().set("MAINTENANCE-MOTD.STATUS", false);
+                    Nucleus.getInstance().getConfig().set("MOTD.STATUS", true);
                     Nucleus.getInstance().saveConfig();
                     Nucleus.getInstance().reloadConfig();
-                    sender.sendMessage(CC.translate("&4&LMaintenance: &cDisabled"));
+                    commandSender.sendMessage(CC.translate("&4&LMaintenance: &cDisabled"));
                     break;
             }
         } else {

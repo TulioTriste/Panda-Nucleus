@@ -14,7 +14,10 @@ WHOIS-MESSAGE:
   #Remove if you want or add line if you want
 MOTD:
   STATUS: true
-  MOTD-EDIT: "%D_ARROW%&4Panda Development Mode %NEWLINE% Bungee Mode Active"
+  MOTD-EDIT: "%D_ARROW%&4Panda Development %NEWLINE% discord.gg/pandacomunnity"
+MAINTENANCE-MOTD:
+  STATUS: true
+  MOTD-EDIT: "%D_ARROW%&4Panda Development %NEWLINE% Maintenance Mode Active"
 
 SERVER:
   build:

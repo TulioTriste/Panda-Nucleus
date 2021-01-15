@@ -3,7 +3,7 @@ package me.panda.nucleus;
 
 import lombok.Getter;
 import me.panda.nucleus.commands.*;
-import me.panda.nucleus.listeners.BlockCommandListener;
+import me.panda.nucleus.listeners.FilterListener;
 import me.panda.nucleus.listeners.MaintenanceListener;
 import me.panda.nucleus.listeners.MotdListener;
 import me.panda.nucleus.listeners.PlayerListener;
@@ -55,6 +55,7 @@ public class Nucleus extends Plugin {
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new ServerInfoCommand());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new MotdCommand());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new MaintenanceCommand());
+        ProxyServer.getInstance().getPluginManager().registerCommand(this, new SendCommand());
         Nucleus.getInstance().getConfig().getSection("SERVER").getKeys().forEach(commands ->
                 ProxyServer.getInstance().getPluginManager().registerCommand(this, new ServerSendCommand(commands)));
     }
@@ -62,7 +63,7 @@ public class Nucleus extends Plugin {
     private void registerListeners() {
         ProxyServer.getInstance().getPluginManager().registerListener(this, new PlayerListener());
             ProxyServer.getInstance().getPluginManager().registerListener(this, new MotdListener());
-            ProxyServer.getInstance().getPluginManager().registerListener(this, new BlockCommandListener());
+            ProxyServer.getInstance().getPluginManager().registerListener(this, new FilterListener());
             ProxyServer.getInstance().getPluginManager().registerListener(this, new MaintenanceListener());
     }
 
