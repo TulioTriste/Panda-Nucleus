@@ -7,6 +7,8 @@ import net.md_5.bungee.api.event.ChatEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
+import java.util.List;
+
 /**
  * Created by DevSakio
  * Project: Nucleus
@@ -14,15 +16,21 @@ import net.md_5.bungee.event.EventHandler;
  * Class: BlockCommandListener
  */
 public class FilterListener implements Listener {
+    List<String> commands = Nucleus.getInstance().getConfig().getStringList("BLOCK-COMMAND");
+    String string = "";
     @EventHandler
     public void executeCommand(ChatEvent event){
         ProxiedPlayer player = (ProxiedPlayer) event.getSender();
-        if (player.hasPermission("nucleus.bypass")){
+        if (player.hasPermission("nucleus.bypass")) {
             return;
         }
+        for (String s : commands)
+        {
+            string += s + "\t";
+        }
         if (!player.hasPermission("nucleus.bypass")){
-            if (!(!event.isCommand() || !event.equals(Nucleus.getInstance().getConfig().getStringList("BLOCK-COMMAND")))){
-                event.isCancelled();
+            if (event.isCommand() || event.equals(string)){
+                event.setCancelled(true);
                 player.sendMessage(CC.translate("&cThis command has been block be console!"));
             }
         }

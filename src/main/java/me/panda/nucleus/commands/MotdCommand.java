@@ -40,23 +40,25 @@ public class MotdCommand extends Command {
             Nucleus.getInstance().saveConfig();
             commandSender.sendMessage(CC.translate("&eYou have updated motd to: " + CC.translate(message.toString())));
         }
-        if(args.length > 1) {
-            commandSender.sendMessage(CC.translate("&cIncorrect usage, Use: /bmotd <true:false>"));
-            return;
-        }
-        switch (args[0]) {
-            case "true":
-                Nucleus.getInstance().getConfig().set("MOTD.STATUS", true);
-                Nucleus.getInstance().saveConfig();
-                Nucleus.getInstance().reloadConfig();
-                commandSender.sendMessage(CC.translate("&4&lBMotd: &aEnabled"));
-                break;
-            case "false":
-                Nucleus.getInstance().getConfig().set("MOTD.STATUS", false);
-                Nucleus.getInstance().saveConfig();
-                Nucleus.getInstance().reloadConfig();
-                commandSender.sendMessage(CC.translate("&4&lBMotd: &cDisabled"));
-                break;
+        if (args[1].equalsIgnoreCase("status")){
+            if(args.length > 2) {
+                commandSender.sendMessage(CC.translate("&cIncorrect usage, Use: /bmotd status <true:false>"));
+                return;
+            }
+            switch (args[0]) {
+                case "true":
+                    Nucleus.getInstance().getConfig().set("MOTD.STATUS", true);
+                    Nucleus.getInstance().saveConfig();
+                    Nucleus.getInstance().reloadConfig();
+                    commandSender.sendMessage(CC.translate("&4&lBMotd: &aEnabled"));
+                    break;
+                case "false":
+                    Nucleus.getInstance().getConfig().set("MOTD.STATUS", false);
+                    Nucleus.getInstance().saveConfig();
+                    Nucleus.getInstance().reloadConfig();
+                    commandSender.sendMessage(CC.translate("&4&lBMotd: &cDisabled"));
+                    break;
+            }
         }
     }
 }

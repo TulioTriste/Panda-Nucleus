@@ -3,10 +3,7 @@ package me.panda.nucleus;
 
 import lombok.Getter;
 import me.panda.nucleus.commands.*;
-import me.panda.nucleus.listeners.FilterListener;
-import me.panda.nucleus.listeners.MaintenanceListener;
-import me.panda.nucleus.listeners.MotdListener;
-import me.panda.nucleus.listeners.PlayerListener;
+import me.panda.nucleus.listeners.*;
 import me.panda.nucleus.util.ConfigManager;
 import me.panda.nucleus.util.CooldownManager;
 import net.md_5.bungee.api.ProxyServer;
@@ -65,6 +62,7 @@ public class Nucleus extends Plugin {
             ProxyServer.getInstance().getPluginManager().registerListener(this, new MotdListener());
             ProxyServer.getInstance().getPluginManager().registerListener(this, new FilterListener());
             ProxyServer.getInstance().getPluginManager().registerListener(this, new MaintenanceListener());
+            ProxyServer.getInstance().getPluginManager().registerListener(this, new PingListener());
     }
 
     public void onConfig() {

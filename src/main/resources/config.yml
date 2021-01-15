@@ -16,7 +16,7 @@ MOTD:
   STATUS: true
   MOTD-EDIT: "%D_ARROW%&4Panda Development %NEWLINE% discord.gg/pandacomunnity"
 MAINTENANCE-MOTD:
-  STATUS: true
+  STATUS: false
   MOTD-EDIT: "%D_ARROW%&4Panda Development %NEWLINE% Maintenance Mode Active"
 
 SERVER:
@@ -30,10 +30,11 @@ SERVER:
 BLOCK-COMMAND:
   COMMAND:
     - 'bukkit:op'
-    - 'op'
+    - '/op'
 
 MAINTENACE:
   ENABLE: false
+  PING: "&cWHITELIST"
   KICK_MESSAGE: "&cServer in Maintenance Mode %NEWLINE% Need Support? Join discord.gg/pandacomunnity"
 
 
