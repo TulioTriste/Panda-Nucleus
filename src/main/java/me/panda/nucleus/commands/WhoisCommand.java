@@ -2,13 +2,12 @@ package me.panda.nucleus.commands;
 
 import me.panda.nucleus.Nucleus;
 import me.panda.nucleus.util.CC;
+import net.luckperms.api.LuckPermsProvider;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.command.ConsoleCommandSender;
-import net.md_5.bungee.config.Configuration;
 
-import java.io.IOException;
 import java.util.stream.Collectors;
 
 /**
@@ -46,6 +45,7 @@ public class WhoisCommand extends Command {
         .stream()
         .map(a -> a.replace("%server%", String.valueOf(targetP.getServer())))
         .map(a -> a.replace("%name%" , String.valueOf(targetP.getName())))
+        .map(a -> a.replace("%rank%" , String.valueOf(LuckPermsProvider.get().getUserManager().getUser(targetP.getUniqueId()).getCachedData().getMetaData().getPrefix())))
         .map(a -> a.replace("%ping%", String.valueOf(targetP.getPing())))
         .map(a -> a.replace("%uuid", String.valueOf(targetP.getUniqueId())))
         .map(a -> a.replace("%ip%", String.valueOf(targetP.getAddress())))

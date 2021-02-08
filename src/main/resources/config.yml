@@ -10,6 +10,7 @@ WHOIS-MESSAGE:
   - '&3Ip: &f%ip%'
   - '&3Ping: &f%ping%'
   - '&3Perms: &f%perms%'
+  - '&3Rank: %rank%'
   - '&f&m-----------------------------'
   #Remove if you want or add line if you want
 MOTD:

@@ -3,6 +3,7 @@ package me.panda.nucleus.util;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 import com.google.common.collect.Tables;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.util.*;
 
@@ -27,7 +28,7 @@ public class CooldownManager {
         return this.cooldowns.get(cooldown, uuid) != null ? this.cooldowns.get(cooldown, uuid) : 0;
     }
 
-    public void clearCooldowns() {
+    public void clearCooldowns(String cooldown) {
         this.cooldowns.clear();
     }
 }
