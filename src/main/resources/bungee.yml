@@ -1,5 +1,5 @@
 name: Nucleus
 version: ${project.version}
 main: me.panda.nucleus.Nucleus
-author: TulioTriste
+author: TulioTriste & Sakio
 description: BungeeCord Plugin

@@ -35,9 +35,7 @@ public class Nucleus extends Plugin {
     }
 
     @Override
-    public void onDisable() {
-        cooldownManager.clearCooldowns();
-    }
+    public void onDisable() {}
 
     private void registerCommands() {
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new AlertCommand());
@@ -53,6 +51,7 @@ public class Nucleus extends Plugin {
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new MotdCommand());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new MaintenanceCommand());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new SendCommand());
+        ProxyServer.getInstance().getPluginManager().registerCommand(this, new PandaCommand());
         Nucleus.getInstance().getConfig().getSection("SERVER").getKeys().forEach(commands ->
                 ProxyServer.getInstance().getPluginManager().registerCommand(this, new ServerSendCommand(commands)));
     }
@@ -60,7 +59,6 @@ public class Nucleus extends Plugin {
     private void registerListeners() {
         ProxyServer.getInstance().getPluginManager().registerListener(this, new PlayerListener());
             ProxyServer.getInstance().getPluginManager().registerListener(this, new MotdListener());
-            ProxyServer.getInstance().getPluginManager().registerListener(this, new FilterListener());
             ProxyServer.getInstance().getPluginManager().registerListener(this, new MaintenanceListener());
             ProxyServer.getInstance().getPluginManager().registerListener(this, new PingListener());
     }
@@ -106,5 +104,6 @@ public class Nucleus extends Plugin {
     }
 
     public Configuration getConfig() { return config; }
+
 
 }

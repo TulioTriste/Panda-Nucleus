@@ -42,10 +42,14 @@ public class StaffChatCommand extends Command {
         for (String string : strings)
             message.append(string).append(" ");
         String prefix = LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix() != null ? LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix() : "&r";
-        String playerString = prefix + player.getName();
+        String playerString = player.getName();
         this.plugin.getProxy().getPlayers().forEach(players -> {
             if (players.hasPermission(getPermission()))
-                players.sendMessage(CC.translate("&9[" + player.getServer().getInfo().getName() + "] " + playerString + "&7: &f" + message.toString()));
+                player.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("STAFF.CHAT-FORMAT")).
+                        replace("%name%", playerString)
+                        .replace("%server", player.getServer().getInfo().getName())
+                        .replace("message", message.toString())
+                        .replace("%ranks%", prefix));
         });
     }
 }

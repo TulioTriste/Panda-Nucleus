@@ -1,4 +1,7 @@
+# General Config
 ALERT-PREFIX: "&9&lPandaAnnouncement"
+NO-PERMISSIONS: ""
+CONSOLE-EXECUTE: ""
 
 WHOIS-MESSAGE:
   - '&f&m-----------------------------'
@@ -37,6 +40,9 @@ MAINTENACE:
   ENABLE: false
   PING: "&cWHITELIST"
   KICK_MESSAGE: "&cServer in Maintenance Mode %NEWLINE% Need Support? Join discord.gg/pandacomunnity"
-
+STAFF:
+  CHAT-FORMAT: "&3[%server%] %prefix% %name%: %message% "
+  JOIN: "&3[%server%] %prefix% %name% has join to %serverjoin"
+  LEAVE: "&3[%server%] %prefix% %name% has leave to %serverjoin"
 
 

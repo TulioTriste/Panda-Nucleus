@@ -1,8 +1,5 @@
-MOTD:
-  %NEWLINE% - Nueva linea / New line
-  "%D_ARROW% - Flecha/Arrow
-
-WHOIS:
+  - '%NEWLINE% - Nueva linea / New line'
+  - '%D_ARROW% - Flecha/Arrow'
   - '&3Uuid: &f%uuid%'
   - '&3Custom Name: &f%customname%'
   - '&3Server: &f%server%'

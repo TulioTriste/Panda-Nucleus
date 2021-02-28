@@ -1,6 +1,5 @@
 package me.panda.nucleus.util;
 
-import com.google.common.collect.Lists;
 import net.md_5.bungee.api.ChatColor;
 
 import java.util.List;
