@@ -40,7 +40,9 @@ SERVER:
   hcf:
     PERMS: "nucleus.hcf"
   practice:
-    PERMS: "nucles.practice"
+    PERMS: "nucleus.practice"
+  hub:
+    PERMS: "nucleus.hub"
 
 
 
