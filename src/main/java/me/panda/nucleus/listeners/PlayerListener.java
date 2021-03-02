@@ -2,7 +2,7 @@ package me.panda.nucleus.listeners;
 
 
 import me.panda.nucleus.Nucleus;
-import me.panda.nucleus.commands.StaffChatCommand;
+import me.panda.nucleus.commands.manager.StaffChatCommand;
 import me.panda.nucleus.util.CC;
 import net.luckperms.api.LuckPermsProvider;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -53,17 +53,21 @@ public class PlayerListener implements Listener {
         ProxiedPlayer player = event.getPlayer();
         if (player.hasPermission("nucleus.serverswitch")) {
             String prefix = Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId())).getCachedData().getMetaData().getPrefix() != null ? Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId())).getCachedData().getMetaData().getPrefix() : "&r";
-            String playerString = prefix + player.getName();
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
                     plugin.getProxy().getPlayers().forEach(players -> {
                         if (players.hasPermission("nucleus.serverswitch")) {
                             if (leftServer.get(player) != null)
-                                players.sendMessage(CC.translate("&9[Staff] " + playerString + " &fhas joined &f" + player.getServer().getInfo().getName()));
+                                players.sendMessage(CC.translate(Nucleus.config.getString("STAFF.LEAVE")
+                                        .replace("%server%", player.getServer().getInfo().getName()))
+                                        .replace("%name%", player.getName())
+                                        .replace("%prefix%", prefix));
                             else
-                                players.sendMessage(CC.translate("&9[Staff] " + playerString + " &7has connected to &f" + player.getServer().getInfo().getName()));
-                        }
+                                players.sendMessage(CC.translate(Nucleus.config.getString("STAFF.JOIN")
+                                        .replace("%server%", player.getServer().getInfo().getName()))
+                                        .replace("%name%", player.getName())
+                                        .replace("%prefix%", prefix));                        }
                     });
                 }
             };

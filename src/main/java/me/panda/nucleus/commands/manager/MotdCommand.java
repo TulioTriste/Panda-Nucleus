@@ -1,4 +1,4 @@
-package me.panda.nucleus.commands;
+package me.panda.nucleus.commands.manager;
 
 import jdk.internal.vm.compiler.collections.EconomicMap;
 import me.panda.nucleus.Nucleus;

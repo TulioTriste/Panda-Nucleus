@@ -1,4 +1,4 @@
-package me.panda.nucleus.commands;
+package me.panda.nucleus.commands.manager;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;

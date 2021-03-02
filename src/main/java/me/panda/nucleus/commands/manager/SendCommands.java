@@ -1,4 +1,4 @@
-package me.panda.nucleus.commands;
+package me.panda.nucleus.commands.manager;
 
 import me.panda.nucleus.util.CC;
 import net.md_5.bungee.BungeeCord;
