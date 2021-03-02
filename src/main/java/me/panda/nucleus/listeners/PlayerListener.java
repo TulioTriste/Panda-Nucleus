@@ -79,10 +79,11 @@ public class PlayerListener implements Listener {
         ProxiedPlayer player = event.getPlayer();
         if (player.hasPermission("nucleus.serverdisconnect")) {
             String prefix = Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId())).getCachedData().getMetaData().getPrefix() != null ? LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix() : "&r";
-            String playerString = prefix + player.getName();
             this.plugin.getProxy().getPlayers().forEach(players -> {
                 if (players.hasPermission("nucleus.serverdisconnect"))
-                    players.sendMessage(CC.translate("&9[Staff] " + playerString + " &bhas disconnected from the Network!"));
+                    players.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("STAFF.DISCONNECT")
+                            .replace("%name%", player.getName())
+                            .replace("%prefix%", prefix)));
             });
         }
     }

@@ -60,9 +60,9 @@
 
         private void registerListeners() {
             ProxyServer.getInstance().getPluginManager().registerListener(this, new PlayerListener());
-                ProxyServer.getInstance().getPluginManager().registerListener(this, new MotdListener());
-                ProxyServer.getInstance().getPluginManager().registerListener(this, new MaintenanceListener());
-                ProxyServer.getInstance().getPluginManager().registerListener(this, new PingListener());
+            ProxyServer.getInstance().getPluginManager().registerListener(this, new MotdListener());
+            ProxyServer.getInstance().getPluginManager().registerListener(this, new MaintenanceListener());
+            ProxyServer.getInstance().getPluginManager().registerListener(this, new PingListener());
         }
 
         public void onConfig() {

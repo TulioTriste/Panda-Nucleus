@@ -6,6 +6,7 @@ STAFF:
   CHAT-FORMAT: "&3[%server%] %prefix% %name%: %message% "
   JOIN: "&3[Staff] %prefix% %name% has join to %server%"
   LEAVE: "&3[Staff] %prefix% %name% has leave to %server%"
+  DISCONNECT: "&9[Staff] %prefix% %name% &bhas disconnected from the Network!"
 MESSAGE:
   PING: "Your ping is %ping%"
   PING-TARGET: "%name% ping is %ping"
