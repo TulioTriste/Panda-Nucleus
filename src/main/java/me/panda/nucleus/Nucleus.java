@@ -47,11 +47,9 @@
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new ReportCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new WhoisCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new ReloadCommand());
-            ProxyServer.getInstance().getPluginManager().registerCommand(this, new ServerInfoCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new MotdCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new MaintenanceCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new SendCommand());
-            ProxyServer.getInstance().getPluginManager().registerCommand(this, new SendCommands());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new PandaCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new PingCommand());
             Nucleus.getInstance().getConfig().getSection("SERVER").getKeys().forEach(commands ->

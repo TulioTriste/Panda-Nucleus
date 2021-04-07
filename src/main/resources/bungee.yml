@@ -1,4 +1,4 @@
-name: Nucleus
+name: ElectronStaff
 version: ${project.version}
 main: me.panda.nucleus.Nucleus
 author: PandaCommunity

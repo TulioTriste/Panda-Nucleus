@@ -3,10 +3,12 @@ ALERT-PREFIX: "&9&lPandaAnnouncement"
 NO-PERMISSIONS: ""
 CONSOLE-EXECUTE: ""
 STAFF:
-  CHAT-FORMAT: "&3[%server%] %prefix% %name%: %message% "
+  CHAT-FORMAT: "&3[%server%] %rank% %name%: %message% "
   JOIN: "&3[Staff] %prefix% %name% has join to %server%"
   LEAVE: "&3[Staff] %prefix% %name% has leave to %server%"
   DISCONNECT: "&9[Staff] %prefix% %name% &bhas disconnected from the Network!"
+VIP:
+  JOIN: "hola pe causa las variables igual que lo de staff rey"
 MESSAGE:
   PING: "Your ping is %ping%"
   PING-TARGET: "%name% ping is %ping"
@@ -25,7 +27,7 @@ WHOIS-MESSAGE:
   - '&f&m-----------------------------'
   #Remove if you want or add line if you want
 MOTD:
-  STATUS: true
+  STATUS: false
   MOTD-EDIT: "%D_ARROW%&4Panda Development %NEWLINE% discord.gg/pandacomunnity"
 MAINTENACE:
   MOTD:

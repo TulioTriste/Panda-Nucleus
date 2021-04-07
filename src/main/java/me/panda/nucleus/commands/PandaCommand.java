@@ -1,5 +1,7 @@
 package me.panda.nucleus.commands;
 
+import me.panda.nucleus.Nucleus;
+import me.panda.nucleus.util.CC;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.plugin.Command;
 
@@ -16,6 +18,13 @@ public class PandaCommand extends Command {
 
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
+        commandSender.sendMessage(CC.translate("&c&lNucleus &7(0.1.12)"));
+        commandSender.sendMessage(CC.translate("&cAuthor &7- Tulio / Sakio"));
+        commandSender.sendMessage(CC.translate("&cDiscord &7- discord.gg/pandacommunity"));
+        commandSender.sendMessage(CC.translate("&cWebsite &7- www.pandamc.us"));
+        commandSender.sendMessage("");
+        commandSender.sendMessage(CC.translate("&cVersion &7- " + Nucleus.getInstance().getDescription().getVersion()));
+        commandSender.sendMessage(CC.translate("&cLast Update &7- 12/09/20"));
 
 
     }

@@ -32,8 +32,11 @@ public class PlayerListener implements Listener {
             String playerString = prefix + player.getName();
             this.plugin.getProxy().getPlayers().forEach(players -> {
                 if (players.hasPermission("nucleus.staffchat"))
-                    players.sendMessage(CC.translate("&9[" + player.getServer().getInfo().getName() + "] " + playerString + "&7: &f" + event.getMessage()));
-            });
+                    player.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("STAFF.CHAT-FORMAT")).
+                            replace("%name%", playerString)
+                            .replace("%server%", player.getServer().getInfo().getName())
+                            .replace("message%", event.getMessage())
+                            .replace("%ranks%", prefix));            });
             event.setCancelled(true);
         }
     }
@@ -67,7 +70,14 @@ public class PlayerListener implements Listener {
                                 players.sendMessage(CC.translate(Nucleus.config.getString("STAFF.JOIN")
                                         .replace("%server%", player.getServer().getInfo().getName()))
                                         .replace("%name%", player.getName())
-                                        .replace("%prefix%", prefix));                        }
+                                        .replace("%prefix%", prefix));
+                        }
+                        if (player.hasPermission("nucleus.vip.serverswitch")){
+                            players.sendMessage(CC.translate(Nucleus.config.getString("VIP.JOIN")
+                                    .replace("%server%", player.getServer().getInfo().getName()))
+                                    .replace("%name%", player.getName())
+                                    .replace("%prefix%", prefix));
+                        }
                     });
                 }
             };

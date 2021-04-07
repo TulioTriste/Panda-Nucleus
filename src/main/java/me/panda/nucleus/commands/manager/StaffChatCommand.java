@@ -47,8 +47,8 @@ public class StaffChatCommand extends Command {
             if (players.hasPermission(getPermission()))
                 player.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("STAFF.CHAT-FORMAT")).
                         replace("%name%", playerString)
-                        .replace("%server", player.getServer().getInfo().getName())
-                        .replace("message", message.toString())
+                        .replace("%server%", player.getServer().getInfo().getName())
+                        .replace("message%", message.toString())
                         .replace("%ranks%", prefix));
         });
     }
