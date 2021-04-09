@@ -50,6 +50,15 @@ SERVER:
     PERMS: "nucleus.hub"
 
 
+SERVERINFO-MESSAGE:
+  - '&f&m-----------------------------'
+  - '&3&lServerInfo &7- &3%server%'
+  - ' '
+  - '&3Adress: &f%adress%'
+  - '&3Player Counts: &f%players_count%'
+  - '&f&m-----------------------------'
+
+
 
 
 
