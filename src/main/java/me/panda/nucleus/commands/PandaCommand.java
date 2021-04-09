@@ -21,10 +21,10 @@ public class PandaCommand extends Command {
         commandSender.sendMessage(CC.translate("&c&lNucleus &7(0.1.12)"));
         commandSender.sendMessage(CC.translate("&cAuthor &7- Tulio / Sakio"));
         commandSender.sendMessage(CC.translate("&cDiscord &7- discord.gg/pandacommunity"));
-        commandSender.sendMessage(CC.translate("&cWebsite &7- www.pandamc.us"));
+        commandSender.sendMessage(CC.translate("&cWebsite &7- www.pandacommunity.org"));
         commandSender.sendMessage("");
         commandSender.sendMessage(CC.translate("&cVersion &7- " + Nucleus.getInstance().getDescription().getVersion()));
-        commandSender.sendMessage(CC.translate("&cLast Update &7- 12/09/20"));
+        commandSender.sendMessage(CC.translate("&cLast Update &7- 8/04/21"));
 
 
     }

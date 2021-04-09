@@ -43,11 +43,11 @@ public class WhoisCommand extends Command {
 
         for (String whoismessage : Nucleus.getInstance().getConfig().getStringList("WHOIS-MESSAGE")
         .stream()
-        .map(a -> a.replace("%server%", String.valueOf(targetP.getServer())))
+        .map(a -> a.replace("%server%", String.valueOf(targetP.getServer().getInfo().getName())))
         .map(a -> a.replace("%name%" , String.valueOf(targetP.getName())))
         .map(a -> a.replace("%rank%" , String.valueOf(LuckPermsProvider.get().getUserManager().getUser(targetP.getUniqueId()).getCachedData().getMetaData().getPrefix())))
         .map(a -> a.replace("%ping%", String.valueOf(targetP.getPing())))
-        .map(a -> a.replace("%uuid", String.valueOf(targetP.getUniqueId())))
+        .map(a -> a.replace("%uuid%", String.valueOf(targetP.getUniqueId())))
         .map(a -> a.replace("%ip%", String.valueOf(targetP.getAddress())))
         .map(a -> a.replace("%customname%", String.valueOf(targetP.getDisplayName())))
         .map(a -> a.replace("%perms%", String.valueOf(targetP.getPermissions())))

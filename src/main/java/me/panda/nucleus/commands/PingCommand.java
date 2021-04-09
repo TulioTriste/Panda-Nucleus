@@ -19,12 +19,12 @@ public class PingCommand extends Command {
     public void execute(CommandSender commandSender, String[] strings) {
         ProxiedPlayer player = (ProxiedPlayer) commandSender;
         ProxiedPlayer target = Nucleus.getInstance().getProxy().getPlayer(strings[0]);
-        commandSender.sendMessage(Nucleus.getInstance().getConfig().getString("MESSAGE.PING")
-                .replace("%ping%", String.valueOf(player.getPing())));
-        if (strings[1].equalsIgnoreCase(target.getDisplayName())){
-            commandSender.sendMessage(Nucleus.getInstance().getConfig().getString("MESSAGE.PING")
-                    .replace("%ping%", String.valueOf(player.getPing())
-                            .replace("name", target.getName())));
-        }
+           commandSender.sendMessage(Nucleus.getInstance().getConfig().getString("MESSAGE.PING")
+                   .replace("%ping%", String.valueOf(player.getPing())));
+           if (strings[1].equalsIgnoreCase(target.getDisplayName())){
+               commandSender.sendMessage(Nucleus.getInstance().getConfig().getString("MESSAGE.PING")
+                       .replace("%ping%", String.valueOf(player.getPing())
+                               .replace("name", target.getName())));
+       }
     }
 }

@@ -51,9 +51,11 @@
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new MaintenanceCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new SendCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new PandaCommand());
-            ProxyServer.getInstance().getPluginManager().registerCommand(this, new PingCommand());
             Nucleus.getInstance().getConfig().getSection("SERVER").getKeys().forEach(commands ->
                     ProxyServer.getInstance().getPluginManager().registerCommand(this, new ServerSendCommand(commands)));
+            if (Nucleus.getInstance().getConfig().getBoolean("PING-COMMAND.STATUS")){
+                ProxyServer.getInstance().getPluginManager().registerCommand(this, new PingCommand());
+            }
         }
 
         private void registerListeners() {

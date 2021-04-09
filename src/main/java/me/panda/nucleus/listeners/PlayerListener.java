@@ -28,15 +28,19 @@ public class PlayerListener implements Listener {
 
         ProxiedPlayer player = (ProxiedPlayer) event.getSender();
         if (StaffChatCommand.toggle.contains(player.getUniqueId())) {
-            String prefix = Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId())).getCachedData().getMetaData().getPrefix() != null ? Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId())).getCachedData().getMetaData().getPrefix() : "&r";
-            String playerString = prefix + player.getName();
+            String prefix = Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser
+                    (player.getUniqueId())).getCachedData().getMetaData().getPrefix()
+                    != null ? Objects.requireNonNull(
+                            LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()))
+                    .getCachedData().getMetaData().getPrefix() : "&r";
+            String playerString = player.getName();
             this.plugin.getProxy().getPlayers().forEach(players -> {
                 if (players.hasPermission("nucleus.staffchat"))
                     player.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("STAFF.CHAT-FORMAT")).
                             replace("%name%", playerString)
                             .replace("%server%", player.getServer().getInfo().getName())
-                            .replace("message%", event.getMessage())
-                            .replace("%ranks%", prefix));            });
+                            .replace("%message%", event.getMessage())
+                            .replace("%ranks%", CC.translate(prefix)));            });
             event.setCancelled(true);
         }
     }
@@ -65,18 +69,18 @@ public class PlayerListener implements Listener {
                                 players.sendMessage(CC.translate(Nucleus.config.getString("STAFF.LEAVE")
                                         .replace("%server%", player.getServer().getInfo().getName()))
                                         .replace("%name%", player.getName())
-                                        .replace("%prefix%", prefix));
+                                        .replace("%prefix%", CC.translate(prefix)));
                             else
                                 players.sendMessage(CC.translate(Nucleus.config.getString("STAFF.JOIN")
                                         .replace("%server%", player.getServer().getInfo().getName()))
                                         .replace("%name%", player.getName())
-                                        .replace("%prefix%", prefix));
+                                        .replace("%prefix%", CC.translate(prefix)));
                         }
                         if (player.hasPermission("nucleus.vip.serverswitch")){
                             players.sendMessage(CC.translate(Nucleus.config.getString("VIP.JOIN")
                                     .replace("%server%", player.getServer().getInfo().getName()))
                                     .replace("%name%", player.getName())
-                                    .replace("%prefix%", prefix));
+                                    .replace("%prefix%", CC.translate(prefix)));
                         }
                     });
                 }
@@ -93,7 +97,7 @@ public class PlayerListener implements Listener {
                 if (players.hasPermission("nucleus.serverdisconnect"))
                     players.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("STAFF.DISCONNECT")
                             .replace("%name%", player.getName())
-                            .replace("%prefix%", prefix)));
+                            .replace("%prefix%", CC.translate(prefix))));
             });
         }
     }

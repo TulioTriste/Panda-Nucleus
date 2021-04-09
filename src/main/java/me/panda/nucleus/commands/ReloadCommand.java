@@ -18,9 +18,10 @@ public class ReloadCommand extends Command {
 
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
-        if (commandSender.hasPermission(getPermission()))
+        if (!commandSender.hasPermission(getPermission())) {
             commandSender.sendMessage(CC.translate("&cYou dont have permissions!"));
-
+            return;
+        }
         commandSender.sendMessage(CC.translate("&4Config has been reload"));
         Nucleus.getInstance().reloadConfig();
     }

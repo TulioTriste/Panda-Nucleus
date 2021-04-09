@@ -31,10 +31,10 @@ public class StaffChatCommand extends Command {
         if (strings.length == 0) {
             if (!toggle.contains(player.getUniqueId())) {
                 toggle.add(player.getUniqueId());
-                commandSender.sendMessage(CC.translate("&bStaff chat is now &aon."));
+                commandSender.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("STAFF.ENABLE-CHAT")));
             } else {
                 toggle.remove(player.getUniqueId());
-                commandSender.sendMessage(CC.translate("&bStaff chat is now &coff."));
+                commandSender.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("STAFF.DISABLE-CHAT")));
             }
             return;
         }
@@ -48,8 +48,8 @@ public class StaffChatCommand extends Command {
                 player.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("STAFF.CHAT-FORMAT")).
                         replace("%name%", playerString)
                         .replace("%server%", player.getServer().getInfo().getName())
-                        .replace("message%", message.toString())
-                        .replace("%ranks%", prefix));
+                        .replace("%message%", message.toString())
+                        .replace("%ranks%", CC.translate(prefix)));
         });
     }
 }

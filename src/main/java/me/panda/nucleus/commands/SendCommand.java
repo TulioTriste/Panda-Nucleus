@@ -8,7 +8,6 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.command.ConsoleCommandSender;
 
-import java.lang.reflect.Proxy;
 
 public class SendCommand extends Command {
 
@@ -18,24 +17,22 @@ public class SendCommand extends Command {
 
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
-        ProxiedPlayer target = ProxyServer.getInstance().getPlayer(strings[0]);
         if (!commandSender.hasPermission(getPermission()) && !(commandSender instanceof ConsoleCommandSender)) {
             commandSender.sendMessage(CC.translate("&cNo permissions."));
             return;
         }
         if (strings.length == 0) {
-            commandSender.sendMessage(CC.translate("&cUsage: /send <player\u007Call> <server>"));
+            commandSender.sendMessage(CC.translate("&cUsage: /send <player\u007Cserver\u007Call> <server>"));
             return;
         }
         else if (strings.length == 1) {
             commandSender.sendMessage(CC.translate("&cUsage: /send " + strings[0] + " <server>"));
             return;
         }
-        if (!ProxyServer.getInstance().getServers().containsKey(strings[2])) {
+        if (!ProxyServer.getInstance().getServers().containsKey(strings[1])) {
             commandSender.sendMessage(CC.translate("&cThis server doesn't exist"));
             return;
         }
-
         ServerInfo serverTarget = ProxyServer.getInstance().getServers().get(strings[1]);
         if (strings[0].equalsIgnoreCase("all")) {
             ProxyServer.getInstance().getPlayers().forEach(proxiedPlayer -> proxiedPlayer.connect(serverTarget));
@@ -48,6 +45,7 @@ public class SendCommand extends Command {
                 return;
             }
         }
+        ProxiedPlayer target = ProxyServer.getInstance().getPlayer(strings[0]);
         if (target != null) {
             target.connect(serverTarget);
             target.sendMessage(CC.translate("&6You've been sent by a staff"));
