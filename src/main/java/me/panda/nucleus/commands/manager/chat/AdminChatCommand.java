@@ -1,4 +1,4 @@
-package me.panda.nucleus.commands.manager;
+package me.panda.nucleus.commands.manager.chat;
 
 import com.google.common.collect.Sets;
 import joptsimple.internal.Strings;

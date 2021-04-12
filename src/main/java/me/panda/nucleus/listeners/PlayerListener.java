@@ -2,7 +2,7 @@ package me.panda.nucleus.listeners;
 
 
 import me.panda.nucleus.Nucleus;
-import me.panda.nucleus.commands.manager.AdminChatCommand;
+import me.panda.nucleus.commands.manager.chat.AdminChatCommand;
 import me.panda.nucleus.commands.manager.chat.StaffChatCommand;
 import me.panda.nucleus.util.CC;
 import net.luckperms.api.LuckPermsProvider;

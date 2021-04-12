@@ -4,6 +4,7 @@
     import lombok.Getter;
     import me.panda.nucleus.commands.*;
     import me.panda.nucleus.commands.manager.*;
+    import me.panda.nucleus.commands.manager.chat.AdminChatCommand;
     import me.panda.nucleus.commands.manager.chat.StaffChatCommand;
     import me.panda.nucleus.listeners.*;
     import me.panda.nucleus.util.ConfigManager;
