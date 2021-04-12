@@ -1,6 +1,7 @@
-#Nucleus Bungee
+# Nucleus Bungee
 
-#Permisos
+
+# Permisos
 
 nucleus.staffchat
 
@@ -24,6 +25,6 @@ nucleus.report.notify
 
 nucleus.request.notify
 
+# Support
 
-#Support
 discord.gg/pandacommunity
