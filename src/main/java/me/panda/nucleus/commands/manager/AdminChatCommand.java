@@ -24,7 +24,7 @@ public class AdminChatCommand extends Command {
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
         if (!(commandSender instanceof ProxiedPlayer)) {
-            commandSender.sendMessage(CC.translate("&cThis command only executable by Players."));
+            commandSender.sendMessage(CC.translate("&cThis command only executable by Players!"));
             return;
         }
         ProxiedPlayer player = (ProxiedPlayer) commandSender;
