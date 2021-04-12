@@ -1,11 +1,30 @@
-# Nucleus
+# Nucleus Bungee
 
-Fix Whois
 
-Add Server Status Test Code
+# Permisos
 
-New perms
+nucleus.staffchat
 
-Add blockcommand event 
+nucleus.serverswitch - staff server switch
 
-Add boolean in motd and block command
+nucleus.vip.serverswitch 
+
+nucleus.serverdisconnect - staff disconnect
+
+nucleus.whois
+
+nucleus.send
+
+nucleus.alert
+
+nucleus.manager - maintenance
+
+nucleus.motd
+
+nucleus.report.notify
+
+nucleus.request.notify
+
+# Support
+
+discord.gg/pandacommunity
