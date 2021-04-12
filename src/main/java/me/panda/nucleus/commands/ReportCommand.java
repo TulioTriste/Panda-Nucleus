@@ -8,6 +8,7 @@ import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class ReportCommand extends Command {
@@ -43,15 +44,19 @@ public class ReportCommand extends Command {
             reason.append(strings[i]).append(" ");
         }
         String playerPrefix = LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix() != null ? LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix() : "&r";
-        String playerString = playerPrefix + player.getName();
         String targetPrefix = LuckPermsProvider.get().getUserManager().getUser(target.getUniqueId()).getCachedData().getMetaData().getPrefix() != null ? LuckPermsProvider.get().getUserManager().getUser(target.getUniqueId()).getCachedData().getMetaData().getPrefix() : "&r";
-        String targetString = targetPrefix + target.getName();
         long timeLeft = System.currentTimeMillis() - this.plugin.getCooldownManager().getCooldown("report", player.getUniqueId());
         if (TimeUnit.MILLISECONDS.toSeconds(timeLeft) >= 60L) {
             for (ProxiedPlayer online : this.plugin.getProxy().getPlayers()) {
                 if (online.hasPermission("nucleus.report.notify")) {
-                    online.sendMessage(CC.translate("&9[Report] &7[" + player.getServer().getInfo().getName() + "] " + playerString + " &bhas reported &a" + targetString));
-                    online.sendMessage(CC.translate("      &9Reason: &b" + reason.toString()));
+                    for (String line : Nucleus.getInstance().getConfig().getStringList("STAFF.REPORT")) {
+                        online.sendMessage(CC.translate((line
+                                .replace("%server%", player.getServer().getInfo().getName())
+                                .replace("%prefix%", CC.translate(playerPrefix))
+                                .replace("%name%", player.getName())
+                                .replace("%player_report%", CC.translate(targetPrefix + target.getName()))
+                                .replace("%reasons%", reason.toString()))));
+                    }
                 }
             }
             player.sendMessage(CC.translate("&aThank you! If any staff are online, they will respond shortly."));

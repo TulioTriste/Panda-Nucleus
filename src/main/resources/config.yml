@@ -3,14 +3,14 @@ ALERT-PREFIX: "&9&lPandaAnnouncement"
 PING-COMMAND:
   STATUS: false
 STAFF:
-  CHAT-FORMAT: "&3[%server%] %ranks% %name%: %message% "
-  ENABLE-CHAT: "&cStaff chat enable"
-  DISABLE-CHAT: "&cStaff chat disable"
   JOIN: "&3[Staff] %prefix% %name% has join to %server%"
   LEAVE: "&3[Staff] %prefix% %name% has leave to %server%"
-  DISCONNECT: "&9[Staff] %prefix% %name% &bhas disconnected from the Network!"
-VIP:
-  JOIN: "[VIP] %prefix% %name% &bhas join to %server%!"
+  REPORT:
+    - "&9[Report] [%server%] %prefix% %name% &bhas reported &a %player_report%"
+    - "&aReasons: &b %reasons%"
+  REQUEST:
+    - "&9[Request] [%server%] %prefix% %name% &bhas request help!"
+    - "&aReasons: &b %reasons%"
 MESSAGE:
   PING: "Your ping is %ping%"
   PING-TARGET: "%name% ping is %ping%"
@@ -34,7 +34,7 @@ MOTD:
 MAINTENACE:
   MOTD:
     STATUS: false
-    MOTD-EDIT: "%D_ARROW%&4Panda Development %NEWLINE% Maintenance Mode Active"
+    MOTD-EDIT: "%D_ARROW%&4Panda Development %NEWLINE% Maintenance Mode Active %cooldown%"
   PING:
     ENABLE: false
     PING-EDIT: "&cWHITELIST"
@@ -49,14 +49,27 @@ SERVER:
   hub:
     PERMS: "nucleus.hub"
 
+ANUNCIOS:
+  COOLDOWN: 1 # MINUTOS SOLO
+  ANUNCIOS_ACTIVADOS:
+    - ANUNCIO1
+    - ANUNCIO2
+  ANUNCIOS:
+    ANUNCIO1:
+      MENSAJE: '&fYou can edit this | on config.yml %NEWLINE%'
+    ANUNCIO2:
+      MENSAJE: '&fYou can edit this | on config.yml %D_ARROW%'
 
-SERVERINFO-MESSAGE:
-  - '&f&m-----------------------------'
-  - '&3&lServerInfo &7- &3%server%'
-  - ' '
-  - '&3Adress: &f%adress%'
-  - '&3Player Counts: &f%players_count%'
-  - '&f&m-----------------------------'
+CHAT:
+  STAFF:
+    FORMAT: "&3[%server%] %ranks% %name%: %message%"
+    ENABLE-CHAT: "&cStaff chat enable"
+    DISABLE-CHAT: "&cStaff chat disable"
+  ADMIN:
+    FORMAT: "&3[%server%] %ranks% %name%: %message% "
+    ENABLE-CHAT: "&cAdmin chat enable"
+    DISABLE-CHAT: "&cAdmin chat disable"
+
 
 
 

@@ -2,7 +2,8 @@ package me.panda.nucleus.listeners;
 
 
 import me.panda.nucleus.Nucleus;
-import me.panda.nucleus.commands.manager.StaffChatCommand;
+import me.panda.nucleus.commands.manager.AdminChatCommand;
+import me.panda.nucleus.commands.manager.chat.StaffChatCommand;
 import me.panda.nucleus.util.CC;
 import net.luckperms.api.LuckPermsProvider;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -27,32 +28,40 @@ public class PlayerListener implements Listener {
         if (event.getMessage().startsWith("/")) return;
 
         ProxiedPlayer player = (ProxiedPlayer) event.getSender();
+//staffchat
         if (StaffChatCommand.toggle.contains(player.getUniqueId())) {
             String prefix = Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser
                     (player.getUniqueId())).getCachedData().getMetaData().getPrefix()
                     != null ? Objects.requireNonNull(
-                            LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()))
+                    LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()))
                     .getCachedData().getMetaData().getPrefix() : "&r";
-            String playerString = player.getName();
-            this.plugin.getProxy().getPlayers().forEach(players -> {
-                if (players.hasPermission("nucleus.staffchat"))
-                    player.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("STAFF.CHAT-FORMAT")).
-                            replace("%name%", playerString)
+            plugin.getProxy().getPlayers().forEach(online -> {
+                if (player.hasPermission("nucleus.staffchat")) {
+                    player.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("CHAT.STAFF.FORMAT")).
+                            replace("%name%", player.getName())
                             .replace("%server%", player.getServer().getInfo().getName())
                             .replace("%message%", event.getMessage())
-                            .replace("%ranks%", CC.translate(prefix)));            });
+                            .replace("%ranks%", CC.translate(prefix)));
+                }
+            });
             event.setCancelled(true);
+            if (AdminChatCommand.toggle.contains(player.getUniqueId())) {
+                plugin.getProxy().getPlayers().forEach(online -> {
+                    if (player.hasPermission("nucleus.adminchat")) {
+                        player.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("CHAT.ADMIN.FORMAT")).
+                                replace("%name%", player.getName())
+                                .replace("%server%", player.getServer().getInfo().getName())
+                                .replace("%message%", event.getMessage())
+                                .replace("%ranks%", CC.translate(prefix)));
+                    }
+                }); //fin staffchat
+                event.setCancelled(true);
+            }
         }
     }
-
     @EventHandler
     public void onPlayerDisconnect(PlayerDisconnectEvent event) {
         leftServer.remove(event.getPlayer());
-    }
-
-    @EventHandler
-    public void onServerDisconnect(ServerDisconnectEvent event) {
-        leftServer.put(event.getPlayer(), event.getTarget().getName());
     }
 
     @EventHandler
@@ -66,7 +75,7 @@ public class PlayerListener implements Listener {
                     plugin.getProxy().getPlayers().forEach(players -> {
                         if (players.hasPermission("nucleus.serverswitch")) {
                             if (leftServer.get(player) != null)
-                                players.sendMessage(CC.translate(Nucleus.config.getString("STAFF.LEAVE")
+                                players.sendMessage(CC.translate(Nucleus.config.getString("STAFF.JOIN")
                                         .replace("%server%", player.getServer().getInfo().getName()))
                                         .replace("%name%", player.getName())
                                         .replace("%prefix%", CC.translate(prefix)));
@@ -75,12 +84,15 @@ public class PlayerListener implements Listener {
                                         .replace("%server%", player.getServer().getInfo().getName()))
                                         .replace("%name%", player.getName())
                                         .replace("%prefix%", CC.translate(prefix)));
+
                         }
-                        if (player.hasPermission("nucleus.vip.serverswitch")){
-                            players.sendMessage(CC.translate(Nucleus.config.getString("VIP.JOIN")
-                                    .replace("%server%", player.getServer().getInfo().getName()))
-                                    .replace("%name%", player.getName())
-                                    .replace("%prefix%", CC.translate(prefix)));
+                        if (Nucleus.getInstance().getConfig().getBoolean("VIP.SERVER-SWITCH.STATUS")){
+                            if (player.hasPermission("nucleus.vip.serverswitch")){
+                                players.sendMessage(CC.translate(Nucleus.config.getString("VIP.SERVER-SWITCH.MESSAGE")
+                                        .replace("%server%", player.getServer().getInfo().getName()))
+                                        .replace("%name%", player.getName())
+                                        .replace("%prefix%", CC.translate(prefix)));
+                            }
                         }
                     });
                 }
@@ -95,9 +107,10 @@ public class PlayerListener implements Listener {
             String prefix = Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId())).getCachedData().getMetaData().getPrefix() != null ? LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix() : "&r";
             this.plugin.getProxy().getPlayers().forEach(players -> {
                 if (players.hasPermission("nucleus.serverdisconnect"))
-                    players.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("STAFF.DISCONNECT")
+                    players.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("STAFF.LEAVE")
                             .replace("%name%", player.getName())
-                            .replace("%prefix%", CC.translate(prefix))));
+                            .replace("%prefix%", CC.translate(prefix))
+                            .replace("%server%", player.getServer().getInfo().getName())));
             });
         }
     }

@@ -1,4 +1,4 @@
-package me.panda.nucleus.commands.manager;
+package me.panda.nucleus.commands.manager.chat;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -31,10 +31,10 @@ public class StaffChatCommand extends Command {
         if (strings.length == 0) {
             if (!toggle.contains(player.getUniqueId())) {
                 toggle.add(player.getUniqueId());
-                commandSender.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("STAFF.ENABLE-CHAT")));
+                commandSender.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("CHAT.STAFF.ENABLE-CHAT")));
             } else {
                 toggle.remove(player.getUniqueId());
-                commandSender.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("STAFF.DISABLE-CHAT")));
+                commandSender.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("CHAT.STAFF.DISABLE-CHAT")));
             }
             return;
         }
@@ -44,12 +44,13 @@ public class StaffChatCommand extends Command {
         String prefix = LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix() != null ? LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix() : "&r";
         String playerString = player.getName();
         this.plugin.getProxy().getPlayers().forEach(players -> {
-            if (players.hasPermission(getPermission()))
-                player.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("STAFF.CHAT-FORMAT")).
+            if (players.hasPermission(getPermission())){
+                player.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("CHAT.STAFF.FORMAT")).
                         replace("%name%", playerString)
                         .replace("%server%", player.getServer().getInfo().getName())
                         .replace("%message%", message.toString())
                         .replace("%ranks%", CC.translate(prefix)));
+            }
         });
     }
 }

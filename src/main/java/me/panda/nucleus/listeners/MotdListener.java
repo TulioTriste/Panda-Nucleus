@@ -16,9 +16,9 @@ import net.md_5.bungee.event.EventHandler;
  */
 public class MotdListener implements Listener{
     @EventHandler(priority = 64)
-    public void onServerListPing(final ProxyPingEvent event){
-        if (Nucleus.getInstance().getConfig().getBoolean("MOTD.STATUS")){
-            if (Nucleus.getInstance().getConfig().getString("MOTD.MOTD-EDIT") == null){
+    public void onServerListPing(final ProxyPingEvent event) {
+        if (Nucleus.getInstance().getConfig().getBoolean("MOTD.STATUS")) {
+            if (Nucleus.getInstance().getConfig().getString("MOTD.MOTD-EDIT") == null) {
                 return;
             }
             final ServerPing ping = event.getResponse();

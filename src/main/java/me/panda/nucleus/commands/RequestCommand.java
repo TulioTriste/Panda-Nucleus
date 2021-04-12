@@ -39,8 +39,15 @@ public class RequestCommand extends Command {
         if (TimeUnit.MILLISECONDS.toSeconds(timeLeft) >= 60L) {
             for (ProxiedPlayer online : this.plugin.getProxy().getPlayers()) {
                 if (online.hasPermission("nucleus.request.notify")) {
-                    online.sendMessage(CC.translate("&9[Request] &7[" + player.getServer().getInfo().getName() + "] &b" + playerString + " &bhas requested assistance"));
-                    online.sendMessage(CC.translate("      &9Reason: &b" + reason.toString()));
+//                    online.sendMessage(CC.translate("&9[Request] &7[" + player.getServer().getInfo().getName() + "] &b" + playerString + " &bhas requested assistance"));
+//                    online.sendMessage(CC.translate("      &9Reason: &b" + reason.toString()));
+                    for (String line : Nucleus.getInstance().getConfig().getStringList("STAFF.REQUEST")) {
+                        online.sendMessage(CC.translate(line
+                                .replace("%server%", player.getServer().getInfo().getName())
+                                .replace("%prefix%", CC.translate(prefix))
+                                .replace("%name%", player.getName())
+                                .replace("%reasons%", reason.toString())));
+                    }
                 }
             }
             player.sendMessage(CC.translate("&aThank you! If any staff are online, they will respond shortly."));
