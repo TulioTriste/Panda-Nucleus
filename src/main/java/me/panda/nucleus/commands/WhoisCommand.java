@@ -25,7 +25,7 @@ public class WhoisCommand extends Command {
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
         if (!commandSender.hasPermission(getPermission()) && !(commandSender instanceof ConsoleCommandSender)) {
-            commandSender.sendMessage(CC.translate("&cNo permissions."));
+            commandSender.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("NO-PERMS")));
             return;
         }
 

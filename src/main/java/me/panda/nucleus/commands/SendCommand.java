@@ -1,5 +1,6 @@
 package me.panda.nucleus.commands;
 
+import me.panda.nucleus.Nucleus;
 import me.panda.nucleus.util.CC;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
@@ -18,7 +19,7 @@ public class SendCommand extends Command {
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
         if (!commandSender.hasPermission(getPermission()) && !(commandSender instanceof ConsoleCommandSender)) {
-            commandSender.sendMessage(CC.translate("&cNo permissions."));
+            commandSender.sendMessage((Nucleus.getInstance().getConfig().getString("NO-PERMS")));
             return;
         }
         if (strings.length == 0) {

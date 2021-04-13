@@ -4,11 +4,12 @@
     import lombok.Getter;
     import me.panda.nucleus.commands.*;
     import me.panda.nucleus.commands.manager.*;
-    import me.panda.nucleus.commands.manager.chat.AdminChatCommand;
-    import me.panda.nucleus.commands.manager.chat.StaffChatCommand;
+    import me.panda.nucleus.commands.manager.chat.VipChatCommand;
     import me.panda.nucleus.listeners.*;
+    import me.panda.nucleus.listeners.chat.VipChatListener;
     import me.panda.nucleus.util.ConfigManager;
     import me.panda.nucleus.util.CooldownManager;
+    import me.panda.nucleus.util.ProfileManager;
     import net.md_5.bungee.api.ProxyServer;
     import net.md_5.bungee.api.plugin.Plugin;
     import net.md_5.bungee.config.Configuration;
@@ -45,15 +46,14 @@
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new SendCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new ListCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new RequestCommand());
-            ProxyServer.getInstance().getPluginManager().registerCommand(this, new StaffChatCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new ReportCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new WhoisCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new ReloadCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new MotdCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new MaintenanceCommand());
-            ProxyServer.getInstance().getPluginManager().registerCommand(this, new AdminChatCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new SendCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new PandaCommand());
+            ProxyServer.getInstance().getPluginManager().registerCommand(this, new VipChatCommand());
             Nucleus.getInstance().getConfig().getSection("SERVER").getKeys().forEach(commands ->
                     ProxyServer.getInstance().getPluginManager().registerCommand(this, new ServerSendCommand(commands)));
             if (Nucleus.getInstance().getConfig().getBoolean("PING-COMMAND.STATUS")){
@@ -67,6 +67,8 @@
             ProxyServer.getInstance().getPluginManager().registerListener(this, new MaintenanceListener());
             ProxyServer.getInstance().getPluginManager().registerListener(this, new PingListener());
             ProxyServer.getInstance().getPluginManager().registerListener(this, new AutoMessageListener());
+            ProxyServer.getInstance().getPluginManager().registerListener(this, new ProfileManager());
+            ProxyServer.getInstance().getPluginManager().registerListener(this, new VipChatListener());
         }
 
         public void onConfig() {

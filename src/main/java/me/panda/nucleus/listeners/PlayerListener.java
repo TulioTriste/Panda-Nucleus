@@ -2,8 +2,6 @@ package me.panda.nucleus.listeners;
 
 
 import me.panda.nucleus.Nucleus;
-import me.panda.nucleus.commands.manager.chat.AdminChatCommand;
-import me.panda.nucleus.commands.manager.chat.StaffChatCommand;
 import me.panda.nucleus.util.CC;
 import net.luckperms.api.LuckPermsProvider;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -21,44 +19,6 @@ public class PlayerListener implements Listener {
     private final Nucleus plugin = Nucleus.getInstance();
     private final Map<ProxiedPlayer, String> leftServer = new HashMap<>();
 
-    @EventHandler
-    public void onChat(ChatEvent event) {
-        if (!(event.getSender() instanceof ProxiedPlayer)) return;
-
-        if (event.getMessage().startsWith("/")) return;
-
-        ProxiedPlayer player = (ProxiedPlayer) event.getSender();
-//staffchat
-        if (StaffChatCommand.toggle.contains(player.getUniqueId())) {
-            String prefix = Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser
-                    (player.getUniqueId())).getCachedData().getMetaData().getPrefix()
-                    != null ? Objects.requireNonNull(
-                    LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()))
-                    .getCachedData().getMetaData().getPrefix() : "&r";
-            plugin.getProxy().getPlayers().forEach(online -> {
-                if (player.hasPermission("nucleus.staffchat")) {
-                    player.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("CHAT.STAFF.FORMAT")).
-                            replace("%name%", player.getName())
-                            .replace("%server%", player.getServer().getInfo().getName())
-                            .replace("%message%", event.getMessage())
-                            .replace("%ranks%", CC.translate(prefix)));
-                }
-            });
-            event.setCancelled(true);
-            if (AdminChatCommand.toggle.contains(player.getUniqueId())) {
-                plugin.getProxy().getPlayers().forEach(online -> {
-                    if (player.hasPermission("nucleus.adminchat")) {
-                        player.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("CHAT.ADMIN.FORMAT")).
-                                replace("%name%", player.getName())
-                                .replace("%server%", player.getServer().getInfo().getName())
-                                .replace("%message%", event.getMessage())
-                                .replace("%ranks%", CC.translate(prefix)));
-                    }
-                }); //fin staffchat
-                event.setCancelled(true);
-            }
-        }
-    }
     @EventHandler
     public void onPlayerDisconnect(PlayerDisconnectEvent event) {
         leftServer.remove(event.getPlayer());

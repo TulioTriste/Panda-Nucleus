@@ -21,6 +21,10 @@ public class MaintenanceCommand extends Command {
 
     @Override
     public void execute(CommandSender commandSender, String[] args) {
+        if (!commandSender.hasPermission(getPermission())){
+            commandSender.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("NO-PERMS")));
+            return;
+        }
         if (!(commandSender instanceof ProxiedPlayer)) {
             if(args.length == 0) {
                 commandSender.sendMessage(CC.translate("&cIncorrect usage, Use: /maintenance <true:false>"));

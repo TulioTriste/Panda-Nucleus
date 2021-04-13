@@ -26,7 +26,7 @@ public class MotdCommand extends Command {
 
     public void execute(CommandSender commandSender, final String[] args) {
         if (commandSender.hasPermission(getPermission())){
-            commandSender.sendMessage(CC.translate("&cYou dont have permission"));
+            commandSender.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("NO-PERMS")));
         }
         if (args.length == 0) {
             commandSender.sendMessage(CC.translate("&cUsage: /bmotd <text> - %NEWLINE% new line"));

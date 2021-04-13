@@ -2,6 +2,7 @@
 ALERT-PREFIX: "&9&lPandaAnnouncement"
 PING-COMMAND:
   STATUS: false
+NO-PERMS: "&cYou dont have permissions!"
 STAFF:
   JOIN: "&3[Staff] %prefix% %name% has join to %server%"
   LEAVE: "&3[Staff] %prefix% %name% has leave to %server%"
@@ -40,6 +41,7 @@ MAINTENACE:
     PING-EDIT: "&cWHITELIST"
   KICK_MESSAGE: "&cServer in Maintenance Mode %NEWLINE% Need Support? Join discord.gg/pandacomunnity"
 SERVER:
+  MESSAGE: "&cConnect to %server%"
   build:
     PERMS: "nucleus.build"
   hcf:
@@ -63,12 +65,14 @@ ANUNCIOS:
 CHAT:
   STAFF:
     FORMAT: "&3[%server%] %ranks% %name%: %message%"
+    PERMS: "nucleus.staffchat"
     ENABLE-CHAT: "&cStaff chat enable"
     DISABLE-CHAT: "&cStaff chat disable"
-  ADMIN:
-    FORMAT: "&3[%server%] %ranks% %name%: %message% "
-    ENABLE-CHAT: "&cAdmin chat enable"
-    DISABLE-CHAT: "&cAdmin chat disable"
+  VIP:
+    FORMAT: "&3[%server%] %ranks% %name%: %message%"
+    PERMS: "nucleus.vipchat"
+    ENABLE-CHAT: "&cVIP chat enable"
+    DISABLE-CHAT: "&cVIP chat disable"
 
 
 
