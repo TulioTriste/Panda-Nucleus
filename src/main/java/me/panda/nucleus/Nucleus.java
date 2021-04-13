@@ -4,8 +4,10 @@
     import lombok.Getter;
     import me.panda.nucleus.commands.*;
     import me.panda.nucleus.commands.manager.*;
+    import me.panda.nucleus.commands.manager.chat.StaffChatCommand;
     import me.panda.nucleus.commands.manager.chat.VipChatCommand;
     import me.panda.nucleus.listeners.*;
+    import me.panda.nucleus.listeners.chat.StaffChatListener;
     import me.panda.nucleus.listeners.chat.VipChatListener;
     import me.panda.nucleus.util.ConfigManager;
     import me.panda.nucleus.util.CooldownManager;
@@ -54,6 +56,7 @@
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new SendCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new PandaCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new VipChatCommand());
+            ProxyServer.getInstance().getPluginManager().registerCommand(this, new StaffChatCommand());
             Nucleus.getInstance().getConfig().getSection("SERVER").getKeys().forEach(commands ->
                     ProxyServer.getInstance().getPluginManager().registerCommand(this, new ServerSendCommand(commands)));
             if (Nucleus.getInstance().getConfig().getBoolean("PING-COMMAND.STATUS")){
@@ -69,6 +72,7 @@
             ProxyServer.getInstance().getPluginManager().registerListener(this, new AutoMessageListener());
             ProxyServer.getInstance().getPluginManager().registerListener(this, new ProfileManager());
             ProxyServer.getInstance().getPluginManager().registerListener(this, new VipChatListener());
+            ProxyServer.getInstance().getPluginManager().registerListener(this, new StaffChatListener());
         }
 
         public void onConfig() {
