@@ -44,7 +44,7 @@ public class VipChatCommand extends Command {
 								.replace("%name%", sender.getName()).
 										replace("%server%", ((ProxiedPlayer) sender).getServer().getInfo().getName())
 								.replace("%message%", builder.toString())
-								.replace("%prefix%", CC.translate(prefix)));
+								.replace("%ranks%", CC.translate(prefix)));
 					});
 				}
 			});

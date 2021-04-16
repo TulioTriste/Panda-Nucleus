@@ -56,7 +56,7 @@
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new SendCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new PandaCommand());
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new VipChatCommand());
-            ProxyServer.getInstance().getPluginManager().registerCommand(this, new StaffChatCommand());
+            ProxyServer.getInstance().getPluginManager().registerCommand(this, new StaffChatCommand()   );
             Nucleus.getInstance().getConfig().getSection("SERVER").getKeys().forEach(commands ->
                     ProxyServer.getInstance().getPluginManager().registerCommand(this, new ServerSendCommand(commands)));
             if (Nucleus.getInstance().getConfig().getBoolean("PING-COMMAND.STATUS")){

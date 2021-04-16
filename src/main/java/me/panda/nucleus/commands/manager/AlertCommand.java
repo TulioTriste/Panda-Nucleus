@@ -1,6 +1,5 @@
 package me.panda.nucleus.commands.manager;
 
-
 import joptsimple.internal.Strings;
 import me.panda.nucleus.Nucleus;
 import me.panda.nucleus.util.CC;

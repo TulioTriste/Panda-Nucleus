@@ -35,7 +35,7 @@ public class VipChatListener implements Listener {
 					vip.sendMessage(message.replace("%player%", ((ProxiedPlayer) event.getSender()).getName()).
 							replace("%server%", ((ProxiedPlayer) event.getSender()).getServer().getInfo().getName()).
 							replace("%message%", event.getMessage())
-							.replace("%prefix%", CC.translate(prefix)));
+							.replace("%ranks%", CC.translate(prefix)));
 				});
 			}
 		});

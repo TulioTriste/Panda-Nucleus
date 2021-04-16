@@ -40,8 +40,8 @@ MAINTENACE:
     ENABLE: false
     PING-EDIT: "&cWHITELIST"
   KICK_MESSAGE: "&cServer in Maintenance Mode %NEWLINE% Need Support? Join discord.gg/pandacomunnity"
+SERVER-MESSAGE: "&cConnect to %server%"
 SERVER:
-  MESSAGE: "&cConnect to %server%"
   build:
     PERMS: "nucleus.build"
   hcf:

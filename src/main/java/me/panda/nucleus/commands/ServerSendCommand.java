@@ -33,7 +33,7 @@ public class ServerSendCommand extends Command {
         ProxiedPlayer player = (ProxiedPlayer) commandSender;
         ServerInfo server = ProxyServer.getInstance().getServerInfo(label);
         player.connect(server);
-        player.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("SERVER.MESSAGE")
+        player.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("SERVER-MESSAGE")
                 .replace("%server", server.getName())));
     }
 }
