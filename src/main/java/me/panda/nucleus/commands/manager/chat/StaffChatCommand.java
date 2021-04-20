@@ -41,8 +41,8 @@ public class StaffChatCommand extends Command {
 				if (staff.hasPermission(Nucleus.getInstance().getConfig().getString("CHAT.STAFF.PERMS"))) {
 					Nucleus.getInstance().getConfig().getStringList("CHAT.STAFF.FORMAT").forEach(message -> {
 						staff.sendMessage(message
-								.replace("%name%", sender.getName()).
-										replace("%server%", ((ProxiedPlayer) sender).getServer().getInfo().getName())
+								.replace("%name%", sender.getName())
+								.replace("%server%", ((ProxiedPlayer) sender).getServer().getInfo().getName())
 								.replace("%message%", builder.toString())
 								.replace("%ranks%", CC.translate(prefix)));
 					});
@@ -53,10 +53,6 @@ public class StaffChatCommand extends Command {
 		if (ProfileManager.getInstance().getProfile(((ProxiedPlayer) sender).getUniqueId()) == null) {
 			return;
 		}
-//		if (ProfileManager.getInstance().getProfile(((ProxiedPlayer) sender).getUniqueId()).isHeadStaff()) {
-//			sender.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString()));
-//			return;
-//		}
 		if (ProfileManager.getInstance().getProfile(((ProxiedPlayer) sender).getUniqueId()).isStaff()) {
 			ProfileManager.getInstance().getProfile(((ProxiedPlayer) sender).getUniqueId()).setStaff(false);
 			sender.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("CHAT.STAFF.DISABLE-CHAT")));

@@ -41,8 +41,8 @@ public class VipChatCommand extends Command {
 				if (vip.hasPermission(Nucleus.getInstance().getConfig().getString("CHAT.VIP.PERMS"))) {
 					Nucleus.getInstance().getConfig().getStringList("CHAT.VIP.FORMAT").forEach(message -> {
 						vip.sendMessage(message
-								.replace("%name%", sender.getName()).
-										replace("%server%", ((ProxiedPlayer) sender).getServer().getInfo().getName())
+								.replace("%name%", sender.getName())
+								.replace("%server%", ((ProxiedPlayer) sender).getServer().getInfo().getName())
 								.replace("%message%", builder.toString())
 								.replace("%ranks%", CC.translate(prefix)));
 					});

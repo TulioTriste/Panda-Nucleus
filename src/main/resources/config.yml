@@ -65,12 +65,14 @@ ANUNCIOS:
 
 CHAT:
   STAFF:
-    FORMAT: "&3[%server%] %ranks% %name%: %message%"
+    FORMAT:
+      - "&3[%server%] %ranks% %name%: %message%"
     PERMS: "nucleus.staffchat"
     ENABLE-CHAT: "&cStaff chat enable"
     DISABLE-CHAT: "&cStaff chat disable"
   VIP:
-    FORMAT: "&3[%server%] %ranks% %name%: %message%"
+    FORMAT:
+      - "&3[%server%] %ranks% %name%: %message%"
     PERMS: "nucleus.vipchat"
     ENABLE-CHAT: "&cVIP chat enable"
     DISABLE-CHAT: "&cVIP chat disable"

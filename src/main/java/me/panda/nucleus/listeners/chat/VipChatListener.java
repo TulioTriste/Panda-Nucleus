@@ -32,13 +32,14 @@ public class VipChatListener implements Listener {
 			String prefix = Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(vip.getUniqueId())).getCachedData().getMetaData().getPrefix() != null ? Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(vip.getUniqueId())).getCachedData().getMetaData().getPrefix() : "&r";
 			if (vip.hasPermission(Nucleus.getInstance().getConfig().getString("CHAT.VIP.PERMS"))) {
 				Nucleus.getInstance().getConfig().getStringList("CHAT.VIP.FORMAT").forEach(message -> {
-					vip.sendMessage(message.replace("%player%", ((ProxiedPlayer) event.getSender()).getName()).
+					vip.sendMessage(CC.translate(message.replace("%name%", ((ProxiedPlayer) event.getSender()).getName()).
 							replace("%server%", ((ProxiedPlayer) event.getSender()).getServer().getInfo().getName()).
 							replace("%message%", event.getMessage())
-							.replace("%ranks%", CC.translate(prefix)));
+							.replace("%ranks%", CC.translate(prefix))));
 				});
 			}
 		});
 		event.setCancelled(true);
+		return;
 	}
 }
