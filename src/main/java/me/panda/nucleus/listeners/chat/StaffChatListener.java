@@ -25,7 +25,7 @@ public class StaffChatListener implements Listener {
 		if (ProfileManager.getInstance().getProfile(((ProxiedPlayer) event.getSender()).getUniqueId()) == null) {
 			return;
 		}
-		if (!ProfileManager.getInstance().getProfile(((ProxiedPlayer) event.getSender()).getUniqueId()).isvip()) {
+		if (!ProfileManager.getInstance().getProfile(((ProxiedPlayer) event.getSender()).getUniqueId()).isStaff()) {
 			return;
 		}
 		ProxyServer.getInstance().getPlayers().forEach(staff -> {

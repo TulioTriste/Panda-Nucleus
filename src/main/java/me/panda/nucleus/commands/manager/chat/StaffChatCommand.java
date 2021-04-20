@@ -39,7 +39,7 @@ public class StaffChatCommand extends Command {
 			ProxyServer.getInstance().getPlayers().forEach(staff -> {
 				String prefix = Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(staff.getUniqueId())).getCachedData().getMetaData().getPrefix() != null ? Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(staff.getUniqueId())).getCachedData().getMetaData().getPrefix() : "&r";
 				if (staff.hasPermission(Nucleus.getInstance().getConfig().getString("CHAT.STAFF.PERMS"))) {
-					Nucleus.getInstance().getConfig().getStringList("CHAT.VIP.FORMAT").forEach(message -> {
+					Nucleus.getInstance().getConfig().getStringList("CHAT.STAFF.FORMAT").forEach(message -> {
 						staff.sendMessage(message
 								.replace("%name%", sender.getName()).
 										replace("%server%", ((ProxiedPlayer) sender).getServer().getInfo().getName())
@@ -59,10 +59,10 @@ public class StaffChatCommand extends Command {
 //		}
 		if (ProfileManager.getInstance().getProfile(((ProxiedPlayer) sender).getUniqueId()).isStaff()) {
 			ProfileManager.getInstance().getProfile(((ProxiedPlayer) sender).getUniqueId()).setStaff(false);
-			sender.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("CHAT.STAFF.DISABLE")));
+			sender.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("CHAT.STAFF.DISABLE-CHAT")));
 			return;
 		}
 		ProfileManager.getInstance().getProfile(((ProxiedPlayer) sender).getUniqueId()).setStaff(true);
-		sender.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("CHAT.STAFF.ENABLE")));
+		sender.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("CHAT.STAFF.ENABLE-CHAT")));
 	}
 }

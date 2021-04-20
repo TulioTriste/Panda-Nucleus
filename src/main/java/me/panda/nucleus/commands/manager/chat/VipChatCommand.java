@@ -55,10 +55,10 @@ public class VipChatCommand extends Command {
 		}
 		if (ProfileManager.getInstance().getProfile(((ProxiedPlayer) sender).getUniqueId()).isvip()) {
 			ProfileManager.getInstance().getProfile(((ProxiedPlayer) sender).getUniqueId()).setvip(false);
-			sender.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("CHAT.VIP.DISABLE")));
+			sender.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("CHAT.VIP.DISABLE-CHAT")));
 			return;
 		}
 		ProfileManager.getInstance().getProfile(((ProxiedPlayer) sender).getUniqueId()).setvip(true);
-		sender.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("CHAT.VIP.ENABLE")));
+		sender.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("CHAT.VIP.ENABLE-CHAT")));
 	}
 }

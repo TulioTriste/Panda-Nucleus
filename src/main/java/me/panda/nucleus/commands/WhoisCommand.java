@@ -51,6 +51,7 @@ public class WhoisCommand extends Command {
         .map(a -> a.replace("%ip%", String.valueOf(targetP.getAddress())))
         .map(a -> a.replace("%customname%", String.valueOf(targetP.getDisplayName())))
         .map(a -> a.replace("%perms%", String.valueOf(targetP.getPermissions())))
+        .map(a -> a.replace("%location%", String.valueOf(targetP.getLocale().getCountry())))
         .collect(Collectors.toList())){
             commandSender.sendMessage(CC.translate(whoismessage));
         }

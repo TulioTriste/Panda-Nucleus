@@ -27,6 +27,7 @@ WHOIS-MESSAGE:
   - '&3Ping: &f%ping%'
   - '&3Perms: &f%perms%'
   - '&3Rank: %rank%'
+  - '&3Location: %location%'
   - '&f&m-----------------------------'
   #Remove if you want or add line if you want
 MOTD:
