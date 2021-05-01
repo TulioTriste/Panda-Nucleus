@@ -1,6 +1,5 @@
 package me.panda.nucleus.commands.manager;
 
-import jdk.internal.vm.compiler.collections.EconomicMap;
 import me.panda.nucleus.Nucleus;
 import me.panda.nucleus.util.CC;
 import net.md_5.bungee.api.CommandSender;
