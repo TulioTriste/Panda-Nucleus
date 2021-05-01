@@ -25,7 +25,5 @@ public class PandaCommand extends Command {
         commandSender.sendMessage("");
         commandSender.sendMessage(CC.translate("&cVersion &7- " + Nucleus.getInstance().getDescription().getVersion()));
         commandSender.sendMessage(CC.translate("&cLast Update &7- 19/04/21"));
-
-
     }
 }

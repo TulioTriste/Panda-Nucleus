@@ -36,7 +36,7 @@ MOTD:
 MAINTENACE:
   MOTD:
     STATUS: false
-    MOTD-EDIT: "%D_ARROW%&4Panda Development %NEWLINE% Maintenance Mode Active %cooldown%"
+    MOTD-EDIT: "%D_ARROW%&4Panda Development %NEWLINE% Maintenance Mode Active"
   PING:
     ENABLE: false
     PING-EDIT: "&cWHITELIST"
@@ -53,6 +53,7 @@ SERVER:
     PERMS: "nucleus.hub"
 
 ANUNCIOS:
+  STATUS: true
   COOLDOWN: 1 # MINUTOS SOLO
   ANUNCIOS_ACTIVADOS:
     - ANUNCIO1
@@ -76,6 +77,9 @@ CHAT:
     PERMS: "nucleus.vipchat"
     ENABLE-CHAT: "&cVIP chat enable"
     DISABLE-CHAT: "&cVIP chat disable"
+    JOIN:
+      STATUS: true
+      MESSAGE: "&4[VIP] %prefix% %name% has join to the server"
 
 
 

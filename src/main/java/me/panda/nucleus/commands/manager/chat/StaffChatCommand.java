@@ -40,11 +40,11 @@ public class StaffChatCommand extends Command {
 				String prefix = Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(staff.getUniqueId())).getCachedData().getMetaData().getPrefix() != null ? Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(staff.getUniqueId())).getCachedData().getMetaData().getPrefix() : "&r";
 				if (staff.hasPermission(Nucleus.getInstance().getConfig().getString("CHAT.STAFF.PERMS"))) {
 					Nucleus.getInstance().getConfig().getStringList("CHAT.STAFF.FORMAT").forEach(message -> {
-						staff.sendMessage(message
+						staff.sendMessage(CC.translate((message
 								.replace("%name%", sender.getName())
 								.replace("%server%", ((ProxiedPlayer) sender).getServer().getInfo().getName())
 								.replace("%message%", builder.toString())
-								.replace("%ranks%", CC.translate(prefix)));
+								.replace("%ranks%", CC.translate(prefix)))));
 					});
 				}
 			});

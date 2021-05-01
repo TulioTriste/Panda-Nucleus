@@ -40,11 +40,11 @@ public class VipChatCommand extends Command {
 				String prefix = Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(vip.getUniqueId())).getCachedData().getMetaData().getPrefix() != null ? Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(vip.getUniqueId())).getCachedData().getMetaData().getPrefix() : "&r";
 				if (vip.hasPermission(Nucleus.getInstance().getConfig().getString("CHAT.VIP.PERMS"))) {
 					Nucleus.getInstance().getConfig().getStringList("CHAT.VIP.FORMAT").forEach(message -> {
-						vip.sendMessage(message
+						vip.sendMessage(CC.translate((message
 								.replace("%name%", sender.getName())
 								.replace("%server%", ((ProxiedPlayer) sender).getServer().getInfo().getName())
 								.replace("%message%", builder.toString())
-								.replace("%ranks%", CC.translate(prefix)));
+								.replace("%ranks%", CC.translate(prefix)))));
 					});
 				}
 			});

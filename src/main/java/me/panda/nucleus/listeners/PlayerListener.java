@@ -46,14 +46,6 @@ public class PlayerListener implements Listener {
                                         .replace("%prefix%", CC.translate(prefix)));
 
                         }
-                        if (Nucleus.getInstance().getConfig().getBoolean("VIP.SERVER-SWITCH.STATUS")){
-                            if (player.hasPermission("nucleus.vip.serverswitch")){
-                                players.sendMessage(CC.translate(Nucleus.config.getString("VIP.SERVER-SWITCH.MESSAGE")
-                                        .replace("%server%", player.getServer().getInfo().getName()))
-                                        .replace("%name%", player.getName())
-                                        .replace("%prefix%", CC.translate(prefix)));
-                            }
-                        }
                     });
                 }
             };
@@ -73,5 +65,20 @@ public class PlayerListener implements Listener {
                             .replace("%server%", player.getServer().getInfo().getName())));
             });
         }
+    }
+    @EventHandler
+    public void connect(ServerConnectEvent e){
+        ProxiedPlayer player = e.getPlayer();
+        String prefix = Objects.requireNonNull(LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId())).getCachedData().getMetaData().getPrefix() != null ? LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix() : "&r";
+       if (Nucleus.getInstance().getConfig().getBoolean("VIP.JOIN.STATUS")){
+           if (e.getTarget().getName().equalsIgnoreCase("SERVER.hub")){
+               if (player.hasPermission("nucleus.vip.join")){
+                   player.sendMessage(CC.translate(Nucleus.getInstance().getConfig().getString("VIP.JOIN.MESSAGE")
+                           .replace("%server%", player.getServer().getInfo().getName()))
+                           .replace("%name%", player.getName())
+                           .replace("%prefix%", CC.translate(prefix)));
+               }
+           }
+       }
     }
 }

@@ -34,12 +34,11 @@ public class StaffChatListener implements Listener {
 				Nucleus.getInstance().getConfig().getStringList("CHAT.STAFF.FORMAT").forEach(message -> {
 					staff.sendMessage(CC.translate(message.replace("%name%", ((ProxiedPlayer) event.getSender()).getName()).
 							replace("%server%", ((ProxiedPlayer) event.getSender()).getServer().getInfo().getName()).
-							replace("%message%", event.getMessage())
-							.replace("%ranks%", CC.translate(prefix))));
+							replace("%message%", event.getMessage()).
+							replace("%ranks%", CC.translate(prefix))));
 				});
 			}
 		});
 		event.setCancelled(true);
-		return;
 	}
 }
