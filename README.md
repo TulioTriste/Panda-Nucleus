@@ -2,9 +2,3 @@
 
 
 # Permisos
-
-
-
-# Support
-
-discord.gg/pandacommunity
